@@ -1,11 +1,22 @@
 import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   render() {
+    const {title} = this.props;
     return (
       <div className="App">
-        hello world
+        {title}
       </div>
     );
   }
 }
+
+// mapDispatchToProps
+
+const mapStateToProps = ({app}) => {
+  return {
+    title: app.title
+  };
+};
+export default connect(mapStateToProps)(App)
