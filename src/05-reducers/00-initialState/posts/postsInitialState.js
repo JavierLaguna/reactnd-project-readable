@@ -3,7 +3,7 @@ export default {
     id: 'id',
     timestamp: Date.now(),
     title: 'title',
-    body: 'body',
+    body: 'this is the body of the post',
     author: 'author',
     category: 'category by gategories',
     voteScore: 1,

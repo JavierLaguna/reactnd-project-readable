@@ -1,6 +1,6 @@
-import appInitialState from '../00-initialState/app/appInitialState';
+import postsInitialState from '../00-initialState/posts/postsInitialState';
 
-export default function postsReducer(state = appInitialState, action) {
+export default function postsReducer(state = postsInitialState, action) {
   switch (action.type) {
     default:
       return state;

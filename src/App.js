@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import PostsList from './01-containers/postsList'
 
 class App extends PureComponent {
   render() {
@@ -7,6 +8,7 @@ class App extends PureComponent {
     return (
       <div className="App">
         {title}
+        <PostsList/>
       </div>
     );
   }
