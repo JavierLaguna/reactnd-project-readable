@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Post from '../../00-components/post';
+import NewPost from '../../00-components/newPost';
 
 class PostsList extends PureComponent {
   render() {
@@ -18,6 +19,7 @@ class PostsList extends PureComponent {
                 voteScore={post.voteScore}
           />
         )}
+        <NewPost />
       </div>
     );
   }
