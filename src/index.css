@@ -4,3 +4,7 @@ body {
   font-family: 'Averia Libre', cursive;
   background-color: #f6f6f6;
 }
+
+div{
+  box-sizing: border-box;
+}

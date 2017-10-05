@@ -53,7 +53,7 @@
   width: 100%;
   margin: 0 30px;
   color: #797979;
-  border-bottom: 2px solid #f2f2f2;
+  border-bottom: 2px solid #e2e2e2;
 }
 
 .post-score-content {
@@ -63,4 +63,32 @@
   height: 100px;
   width: 100%;
   background-color: #009AF8;
+}
+
+.post-footer-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.post-footer-content__left{
+  display: flex;
+  flex-direction: column;
+}
+
+.post-footer-content__date, .post-footer-content__author{
+  margin-top: 5px;
+}
+
+.post-footer-content__author-icon{
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.post-footer-content__right{
+  display: flex;
 }
