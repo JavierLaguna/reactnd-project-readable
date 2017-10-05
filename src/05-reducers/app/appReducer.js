@@ -1,4 +1,4 @@
-import appInitialState from '../00-initialState/App/appInitialState';
+import appInitialState from '../00-initialState/app/appInitialState';
 
 export default function appReducer(state = appInitialState, action) {
   switch (action.type) {
