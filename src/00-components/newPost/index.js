@@ -17,7 +17,7 @@ export default class Post extends PureComponent {
   render() {
     const {onClick} = this.props;
     return (
-      <div className='new-post-container' onClick={onClick}>
+      <div className='new-post-container' onClick={onClick} title='New post'>
         <i className='fa fa-plus new-post-container__plus'/>
       </div>
     )

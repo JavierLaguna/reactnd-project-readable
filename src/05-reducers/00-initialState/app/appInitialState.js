@@ -1,3 +1,1 @@
-export default {
-  title: 'Hello readable'
-}
+export default {}
