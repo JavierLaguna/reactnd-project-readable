@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import 'font-awesome/css/font-awesome.css';
 import './post.css';
 
 export default class Post extends PureComponent {
