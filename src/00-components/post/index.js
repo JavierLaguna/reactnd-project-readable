@@ -51,13 +51,13 @@ export default class Post extends PureComponent {
           </div>
           <div className='post-score-content'>
             <div className='post-score-content__left'>
-              <i className='fa fa-thumbs-o-up post-score-content__left-hand'/>
+              <i className='fa fa-thumbs-o-up post-score-content__left-hand' title='Vote positive'/>
               <div className="half-circle-left"/>
             </div>
             <span className='post-score-content__score-number'>{voteScore}</span>
             <div className='post-score-content__right'>
               <div className="half-circle-right"/>
-              <i className='fa fa-thumbs-o-down post-score-content__right-hand'/>
+              <i className='fa fa-thumbs-o-down post-score-content__right-hand' title='Vote negative'/>
             </div>
           </div>
           <div className='post-footer-content'>
