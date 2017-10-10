@@ -41,34 +41,34 @@ export default class PostCard extends PureComponent {
     const {id, timestamp, title, body, author, category, voteScore, numberOfComments} = this.props;
     const formattedDate = this.convertDate(timestamp);
     return (
-      <div className='post-container'>
-        <div className='post-header'>
-          <span className='post-header__title'>{title}</span>
+      <div className='post-card-container'>
+        <div className='post-card-header'>
+          <span className='post-card-header__title'>{title}</span>
         </div>
-        <div className='post-body'>
-          <div className='post-text-content'>
-            <span className='post-text-content__text'>{body}</span>
+        <div className='post-card-body'>
+          <div className='post-card-text-content'>
+            <span className='post-card-text-content__text'>{body}</span>
           </div>
-          <div className='post-score-content'>
-            <div className='post-score-content__left'>
-              <i className='fa fa-thumbs-o-up post-score-content__left-hand' title='Vote positive'/>
+          <div className='post-card-score-content'>
+            <div className='post-card-score-content__left'>
+              <i className='fa fa-thumbs-o-up post-card-score-content__left-hand' title='Vote positive'/>
               <div className="half-circle-left"/>
             </div>
-            <span className='post-score-content__score-number'>{voteScore}</span>
-            <div className='post-score-content__right'>
+            <span className='post-card-score-content__score-number'>{voteScore}</span>
+            <div className='post-card-score-content__right'>
               <div className="half-circle-right"/>
-              <i className='fa fa-thumbs-o-down post-score-content__right-hand' title='Vote negative'/>
+              <i className='fa fa-thumbs-o-down post-card-score-content__right-hand' title='Vote negative'/>
             </div>
           </div>
-          <div className='post-footer-content'>
-            <div className='post-footer-content__left'>
-              <span className='post-footer-content__date'><i className='fa fa-calendar-o'/> {formattedDate}</span>
-              <span className='post-footer-content__author'>
-                <i className='fa fa-user post-footer-content__author-icon'/>{author}
+          <div className='post-card-footer-content'>
+            <div className='post-card-footer-content__left'>
+              <span className='post-card-footer-content__date'><i className='fa fa-calendar-o'/> {formattedDate}</span>
+              <span className='post-card-footer-content__author'>
+                <i className='fa fa-user post-card-footer-content__author-icon'/>{author}
               </span>
             </div>
-            <div className='post-footer-content__right'>
-              <span className='post-footer-content__comments'>
+            <div className='post-card-footer-content__right'>
+              <span className='post-card-footer-content__comments'>
                 {numberOfComments} <i className='fa fa-comments'/>
                 </span>
             </div>

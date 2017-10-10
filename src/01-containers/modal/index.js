@@ -1,15 +1,15 @@
 // Components
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import Post from '00-components/post';
-import {CREATE_POST} from 'constants/modal/modal';
+import Post from '../../00-components/post';
+import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import './index.css';
 
 class ModalContainer extends PureComponent {
   state = {
     modalComponents: {
-      [CREATE_POST]: (() => {
-        return (<Post  {...this.props.containerProps}/>)
+      [CREATE_POST_MODAL]: (() => {
+        return (<Post {...this.props.containerProps}/>)
       })
     }
   };
@@ -18,7 +18,7 @@ class ModalContainer extends PureComponent {
     if (!this.props.modalType) {
       return null;
     }
-    let SpecificModal = this.state.modalComponents[this.props.modalType];
+    const SpecificModal = this.state.modalComponents[this.props.modalType];
     return (
       <div className='modal'>
         <div className='modal__container'>
@@ -29,10 +29,10 @@ class ModalContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({modal}) => {
+const mapStateToProps = ({app}) => {
   return {
-    modalType: modal.modalType,
-    containerProps: modal.containerProps
+    modalType: app.modal.modalType,
+    containerProps: app.modal.containerProps
   };
 };
 
