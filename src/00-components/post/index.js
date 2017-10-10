@@ -30,7 +30,13 @@ export default class Post extends PureComponent {
   }
 
   saveChanges() {
-    this.props.saveChanges();
+    const {title, author, category, body} = this.state;
+    this.props.saveChanges({
+      title,
+      author,
+      category,
+      body
+    });
   }
 
   render() {

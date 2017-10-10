@@ -3,7 +3,7 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Post from '../../00-components/post';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
-import {hideModal} from '../../02-actions/app/modalActions';
+import {hideModalAction} from '../../02-actions/app/modalActions';
 import './index.css';
 
 class ModalContainer extends PureComponent {
@@ -16,7 +16,7 @@ class ModalContainer extends PureComponent {
   };
 
   closeModal() {
-    this.props.hideModal();
+    this.props.hideModalAction();
   }
 
   render() {
@@ -44,7 +44,7 @@ const mapStateToProps = ({app}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    hideModal: () => dispatch(hideModal())
+    hideModalAction: () => dispatch(hideModalAction())
   }
 };
 

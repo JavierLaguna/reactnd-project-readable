@@ -2,13 +2,26 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
-import {showModal} from '../../02-actions/app/modalActions';
+import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
+import {addPostAction, generateUUID} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 
 class PostsList extends PureComponent {
 
-  openNewPostModal (){
-    this.props.showModal(CREATE_POST_MODAL);
+  openNewPostModal() {
+    const containerProps={
+      saveChanges: this.addNewPost.bind(this)
+    };
+    this.props.showModalAction(CREATE_POST_MODAL, containerProps);
+  }
+
+  addNewPost(newPost) {
+    newPost.id = generateUUID();
+    newPost.timestamp = Date.now();
+    newPost.voteScore = 1;
+    newPost.deleted = false;
+    this.props.addPostAction(newPost);
+    this.props.hideModalAction();
   }
 
   render() {
@@ -40,7 +53,9 @@ const mapStateToProps = ({posts}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showModal: (modalType, containerProps) => dispatch(showModal(modalType, containerProps))
+    showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
+    addPostAction: (newPost) => dispatch(addPostAction(newPost)),
+    hideModalAction: () => dispatch(hideModalAction())
   }
 };
 
