@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import Post from '../../00-components/post';
-import NewPost from '../../00-components/newPost';
+import PostCard from '../../00-components/postCard';
+import NewPostCard from '../../00-components/newPostCard';
 
 class PostsList extends PureComponent {
   render() {
@@ -9,7 +9,7 @@ class PostsList extends PureComponent {
     return (
       <div className='posts-list'>
         {postsList.map((post, index) =>
-          <Post key={index}
+          <PostCard key={index}
                 id={post.id}
                 timestamp={post.timestamp}
                 title={post.title}
@@ -19,7 +19,7 @@ class PostsList extends PureComponent {
                 voteScore={post.voteScore}
           />
         )}
-        <NewPost />
+        <NewPostCard />
       </div>
     );
   }
