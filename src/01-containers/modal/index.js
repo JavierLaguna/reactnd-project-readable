@@ -3,6 +3,7 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Post from '../../00-components/post';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
+import {hideModal} from '../../02-actions/app/modalActions';
 import './index.css';
 
 class ModalContainer extends PureComponent {
@@ -14,6 +15,10 @@ class ModalContainer extends PureComponent {
     }
   };
 
+  closeModal() {
+    this.props.hideModal();
+  }
+
   render() {
     if (!this.props.modalType) {
       return null;
@@ -22,6 +27,7 @@ class ModalContainer extends PureComponent {
     return (
       <div className='modal'>
         <div className='modal__container'>
+          <i className='fa fa-close modal__close-icon' onClick={this.closeModal.bind(this)}/>
           <SpecificModal/>
         </div>
       </div>
@@ -36,4 +42,10 @@ const mapStateToProps = ({app}) => {
   };
 };
 
-export default connect(mapStateToProps)(ModalContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hideModal: () => dispatch(hideModal())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer)

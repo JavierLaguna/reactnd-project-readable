@@ -32,16 +32,16 @@ class PostsList extends PureComponent {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showModal: (modalType, containerProps) => dispatch(showModal(modalType, containerProps))
-  }
-};
-
 const mapStateToProps = ({posts}) => {
   return {
     postsList: posts.postsList
   };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showModal: (modalType, containerProps) => dispatch(showModal(modalType, containerProps))
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList)
