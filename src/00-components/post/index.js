@@ -4,12 +4,14 @@ import './index.css';
 
 export default class Post extends PureComponent {
   static propTypes = {
-    saveChanges: PropTypes.func.isRequired
+    saveChanges: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired
   };
 
   static defaultProps = {
     saveChanges: () => {
-    }
+    },
+    categories: []
   };
 
   state = {
@@ -41,6 +43,7 @@ export default class Post extends PureComponent {
 
   render() {
     const {title, author, category, body} = this.state;
+    const {categories} = this.props;
 
     return (  // TODO FORM TO CHECK VALIDITY??
       <div className='post-container'>
@@ -62,11 +65,14 @@ export default class Post extends PureComponent {
         </div>
         <div className='field'>
           <label className='field__label'>Category</label>
-          <input className='field__input'
-                 name='category'
-                 value={category}
-                 onChange={this.onInputChange.bind(this)}
-          />
+          <select>
+            {categories.map((option, index) => <option key={index} value={option.name}>{option.name}</option>)}
+          </select>
+          {/*<input className='field__input'*/}
+                 {/*name='category'*/}
+                 {/*value={category}*/}
+                 {/*onChange={this.onInputChange.bind(this)}*/}
+          {/*/>*/}
         </div>
         <div className='field'>
           <label className='field__label'>Body</label>

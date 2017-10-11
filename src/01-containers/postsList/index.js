@@ -11,7 +11,8 @@ class PostsList extends PureComponent {
 
   openNewPostModal() {
     const containerProps = {
-      saveChanges: this.addNewPost.bind(this)
+      saveChanges: this.addNewPost.bind(this),
+      categories: this.props.categories
     };
     this.props.showModalAction(CREATE_POST_MODAL, containerProps);
   }
@@ -46,9 +47,10 @@ class PostsList extends PureComponent {
   }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({posts, categories}) => {
   return {
-    postsList: posts.postsList
+    postsList: posts.postsList,
+    categories: categories.categoriesList
   };
 };
 
