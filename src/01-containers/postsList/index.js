@@ -5,21 +5,22 @@ import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
 import {addPostAction, generateUUID} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
+import {POST_DEFAULT_VALUES} from '../../constants/posts/posts';
 
 class PostsList extends PureComponent {
 
   openNewPostModal() {
-    const containerProps={
+    const containerProps = {
       saveChanges: this.addNewPost.bind(this)
     };
     this.props.showModalAction(CREATE_POST_MODAL, containerProps);
   }
 
   addNewPost(newPost) {
-    newPost.id = generateUUID();
-    newPost.timestamp = Date.now();
-    newPost.voteScore = 1;
-    newPost.deleted = false;
+    newPost.id = POST_DEFAULT_VALUES.id();
+    newPost.timestamp = POST_DEFAULT_VALUES.timestamp();
+    newPost.voteScore = POST_DEFAULT_VALUES.voteScore;
+    newPost.deleted = POST_DEFAULT_VALUES.deleted;
     this.props.addPostAction(newPost);
     this.props.hideModalAction();
   }

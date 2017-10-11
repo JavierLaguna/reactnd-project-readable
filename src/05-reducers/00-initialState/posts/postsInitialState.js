@@ -1,24 +1,26 @@
+import {POST_DEFAULT_VALUES} from '../../../constants/posts/posts';
+
 export default {
   postsList: [
     {
-      id: 'id', // TODO MOVE TO DEFAULT VALUES
-      timestamp: Date.now(), // TODO MOVE TO DEFAULT VALUES
-      title: 'title',
-      body: 'this is the body of the post',
-      author: 'author',
-      category: 'category by gategories',
-      voteScore: 1,
-      deleted: false
+      id: POST_DEFAULT_VALUES.id(),
+      timestamp: POST_DEFAULT_VALUES.timestamp(),
+      title: 'Initial Post',
+      body: 'this is the body of the initial post',
+      author: 'Javier Laguna',
+      category: 'category by gategories', //TODO
+      voteScore: POST_DEFAULT_VALUES.voteScore,
+      deleted: POST_DEFAULT_VALUES.deleted
     },
     {
-      id: 'id2',
-      timestamp: Date.now(),
-      title: 'title',
-      body: 'this is the body of the post 2',
-      author: 'author 2',
-      category: 'category by gategories',
-      voteScore: 1,
-      deleted: false
+      id: POST_DEFAULT_VALUES.id(),
+      timestamp: POST_DEFAULT_VALUES.timestamp(),
+      title: 'Initial Post 2',
+      body: 'this is the body of the initial post2',
+      author: 'Javier Laguna',
+      category: 'category by gategories', //TODO
+      voteScore: POST_DEFAULT_VALUES.voteScore,
+      deleted: POST_DEFAULT_VALUES.deleted
     }
   ]
 }
