@@ -1,8 +1,8 @@
 export default {
   postsList: [
     {
-      id: 'id',
-      timestamp: Date.now(),
+      id: 'id', // TODO MOVE TO DEFAULT VALUES
+      timestamp: Date.now(), // TODO MOVE TO DEFAULT VALUES
       title: 'title',
       body: 'this is the body of the post',
       author: 'author',

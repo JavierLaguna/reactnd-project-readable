@@ -1,0 +1,23 @@
+.post-container {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 35px 30px 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field__label {
+  margin-bottom: 8px;
+}
+
+.post-footer{
+  margin: 20px 10px;
+  display: flex;
+  justify-content: flex-end;
+}

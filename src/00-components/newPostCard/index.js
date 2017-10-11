@@ -1,15 +1,16 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import './newPost.css';
+import './newPostCard.css';
 
-export default class Post extends PureComponent {
+export default class NewPostCard extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    onClick: ()=>{}
+    onClick: () => {
+    }
   };
 
   state = {};
