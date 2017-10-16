@@ -97,7 +97,7 @@
   font-size: 56px;
 }
 
-.post-card-score-content__left-hand:hover{
+.post-card-score-content__left-hand:hover {
   color: #C5F299;
 }
 
@@ -118,6 +118,10 @@
   position: absolute;
   font-size: 60px;
   color: #C5F299;
+}
+
+.post-card-score-content__score-number_color_red {
+  color: #FF0043;
 }
 
 .post-card-footer-content {
