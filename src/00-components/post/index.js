@@ -4,12 +4,14 @@ import './index.css';
 
 export default class Post extends PureComponent {
   static propTypes = {
-    saveChanges: PropTypes.func.isRequired
+    saveChanges: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired
   };
 
   static defaultProps = {
     saveChanges: () => {
-    }
+    },
+    categories: []
   };
 
   state = {
@@ -29,7 +31,8 @@ export default class Post extends PureComponent {
     this.onChangeField(event.target.value, event.target.name);
   }
 
-  saveChanges() {
+  saveChanges(event) {
+    event.preventDefault();
     const {title, author, category, body} = this.state;
     this.props.saveChanges({
       title,
@@ -41,44 +44,57 @@ export default class Post extends PureComponent {
 
   render() {
     const {title, author, category, body} = this.state;
+    const {categories} = this.props;
 
-    return (  // TODO FORM TO CHECK VALIDITY??
+    return (
       <div className='post-container'>
-        <div className='field'>
-          <label className='field__label'>Title</label>
-          <input className='field__input'
-                 name='title'
-                 value={title}
-                 onChange={this.onInputChange.bind(this)}
-          />
-        </div>
-        <div className='field'>
-          <label className='field__label'>Author</label>
-          <input className='field__input'
-                 name='author'
-                 value={author}
-                 onChange={this.onInputChange.bind(this)}
-          />
-        </div>
-        <div className='field'>
-          <label className='field__label'>Category</label>
-          <input className='field__input'
-                 name='category'
-                 value={category}
-                 onChange={this.onInputChange.bind(this)}
-          />
-        </div>
-        <div className='field'>
-          <label className='field__label'>Body</label>
-          <input className='field__input'
-                 name='body'
-                 value={body}
-                 onChange={this.onInputChange.bind(this)}
-          />
-        </div>
-        <div className='post-footer'>
-          <button className='post-footer__button' onClick={this.saveChanges.bind(this)}>Save</button>
-        </div>
+        <form className="execute-order-form" onSubmit={this.saveChanges.bind(this)} autoComplete="on">
+          <div className='field'>
+            <label className='field__label'>Title</label>
+            <input className='field__input'
+                   name='title'
+                   value={title}
+                   onChange={this.onInputChange.bind(this)}
+                   required
+            />
+          </div>
+          <div className='field'>
+            <label className='field__label'>Author</label>
+            <input className='field__input'
+                   name='author'
+                   value={author}
+                   onChange={this.onInputChange.bind(this)}
+                   required
+            />
+          </div>
+          <div className='field'>
+            <label className='field__label'>Category</label>
+            <select className='field__input'
+                    name='category'
+                    value={category}
+                    onChange={this.onInputChange.bind(this)}
+                    disabled={categories.length === 0}
+                    required
+            >
+              <option value='' disabled>Categories...</option>
+              {categories.map((option, index) => (
+                <option key={index} value={option.name}>{option.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className='field'>
+            <label className='field__label'>Body</label>
+            <textarea className='field__text-area'
+                      name='body'
+                      value={body}
+                      onChange={this.onInputChange.bind(this)}
+                      required
+            />
+          </div>
+          <div className='post-footer'>
+            <button className='post-footer__button' type='submit'>Save</button>
+          </div>
+        </form>
       </div>
     )
   }
