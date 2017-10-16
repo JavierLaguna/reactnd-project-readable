@@ -89,7 +89,7 @@
 .post-card-score-content__left-hand, .post-card-score-content__right-hand {
   font-size: 46px;
   position: absolute;
-
+  color: #797979;
   cursor: pointer;
 }
 
@@ -97,15 +97,21 @@
   font-size: 56px;
 }
 
+.post-card-score-content__left-hand:hover{
+  color: #C5F299;
+}
+
+.post-card-score-content__right-hand:hover {
+  color: #FF0043;
+}
+
 .post-card-score-content__left-hand {
   left: 20px;
-  color: #C5F299;
 }
 
 .post-card-score-content__right-hand {
   transform: rotateY(180deg);
   right: 20px;
-  color: #FF0043;
 }
 
 .post-card-score-content__score-number {
