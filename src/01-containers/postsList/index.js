@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPostAction, generateUUID} from '../../02-actions/posts/postsActions';
+import {addPostAction} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES} from '../../constants/posts/posts';
 

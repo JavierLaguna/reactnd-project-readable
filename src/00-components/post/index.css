@@ -21,3 +21,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.field__text-area{
+  resize: none;
+  height: 100px;
+}
