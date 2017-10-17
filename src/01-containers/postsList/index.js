@@ -6,10 +6,11 @@ import {showModalAction, hideModalAction} from '../../02-actions/app/modalAction
 import {addPostAction, getAllCategories} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES} from '../../constants/posts/posts';
+import './index.css';
 
 class PostsList extends PureComponent {
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.getAllCategories();
   }
 
