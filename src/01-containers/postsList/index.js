@@ -34,19 +34,21 @@ class PostsList extends PureComponent {
   render() {
     const {postsList} = this.props;
     return (
-      <div className='posts-list'>
-        {postsList.map((post, index) =>
-          <PostCard key={index}
-                    id={post.id}
-                    timestamp={post.timestamp}
-                    title={post.title}
-                    body={post.body}
-                    author={post.author}
-                    category={post.category}
-                    voteScore={post.voteScore}
-          />
-        )}
-        <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
+      <div className='posts-list-container'>
+        <div className='posts-list'>
+          {postsList.map((post, index) =>
+            <PostCard key={index}
+                      id={post.id}
+                      timestamp={post.timestamp}
+                      title={post.title}
+                      body={post.body}
+                      author={post.author}
+                      category={post.category}
+                      voteScore={post.voteScore}
+            />
+          )}
+          <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
+        </div>
       </div>
     );
   }
