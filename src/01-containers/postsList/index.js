@@ -3,11 +3,16 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPostAction} from '../../02-actions/posts/postsActions';
+import {addPostAction, getAllCategories} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES} from '../../constants/posts/posts';
+import './index.css';
 
 class PostsList extends PureComponent {
+
+  componentWillMount() {
+    this.props.getAllCategories();
+  }
 
   openNewPostModal() {
     const containerProps = {
@@ -29,19 +34,21 @@ class PostsList extends PureComponent {
   render() {
     const {postsList} = this.props;
     return (
-      <div className='posts-list'>
-        {postsList.map((post, index) =>
-          <PostCard key={index}
-                    id={post.id}
-                    timestamp={post.timestamp}
-                    title={post.title}
-                    body={post.body}
-                    author={post.author}
-                    category={post.category}
-                    voteScore={post.voteScore}
-          />
-        )}
-        <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
+      <div className='posts-list-container'>
+        <div className='posts-list'>
+          {postsList.map((post, index) =>
+            <PostCard key={index}
+                      id={post.id}
+                      timestamp={post.timestamp}
+                      title={post.title}
+                      body={post.body}
+                      author={post.author}
+                      category={post.category}
+                      voteScore={post.voteScore}
+            />
+          )}
+          <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
+        </div>
       </div>
     );
   }
@@ -58,7 +65,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
     addPostAction: (newPost) => dispatch(addPostAction(newPost)),
-    hideModalAction: () => dispatch(hideModalAction())
+    hideModalAction: () => dispatch(hideModalAction()),
+    getAllCategories: () => dispatch(getAllCategories())
   }
 };
 

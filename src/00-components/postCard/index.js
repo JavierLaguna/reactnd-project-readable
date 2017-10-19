@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 import './postCard.css';
 
 export default class PostCard extends PureComponent {
@@ -54,7 +55,13 @@ export default class PostCard extends PureComponent {
               <i className='fa fa-thumbs-o-up post-card-score-content__left-hand' title='Vote positive'/>
               <div className="half-circle-left"/>
             </div>
-            <span className='post-card-score-content__score-number'>{voteScore}</span>
+            <span className={ClassNames({
+              'post-card-score-content__score-number': true,
+              'post-card-score-content__score-number_color_red': voteScore < 0
+            })}
+            >
+              {voteScore}
+            </span>
             <div className='post-card-score-content__right'>
               <div className="half-circle-right"/>
               <i className='fa fa-thumbs-o-down post-card-score-content__right-hand' title='Vote negative'/>

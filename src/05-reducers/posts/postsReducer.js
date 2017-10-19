@@ -10,6 +10,11 @@ export default function postsReducer(state = postsInitialState, action) {
         ...state,
         postsList
       };
+    case types.SET_ALL_POSTS :
+      return {
+        ...state,
+        postsList: action.posts
+      };
     default:
       return state;
   }

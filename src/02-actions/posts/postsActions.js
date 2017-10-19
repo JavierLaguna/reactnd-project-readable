@@ -1,4 +1,5 @@
-import * as types from '../../constants/posts/posts'
+import * as types from '../../constants/posts/posts';
+import * as PostsService from '../../03-service/posts';
 
 // ------------------------------ ACTIONS  ------------------------------
 
@@ -9,8 +10,22 @@ export function addPostAction(newPost) {
   }
 }
 
+export function setAllPostAction(posts) {
+  return {
+    type: types.SET_ALL_POSTS,
+    posts
+  }
+}
+
 // ------------------------------ ASYNC ACTIONS  ------------------------------
 
+export function getAllCategories() {
+  return dispatch => {
+    PostsService.getAllPosts((posts) => {
+      dispatch(setAllPostAction(posts))
+    })
+  }
+}
 
 // ------------------------------ FUNCTIONS  ------------------------------
 
