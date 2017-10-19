@@ -15,6 +15,18 @@ export default function postsReducer(state = postsInitialState, action) {
         ...state,
         postsList: action.posts
       };
+    case types.SET_POST :
+      const posts = state.postsList.map((post) => {
+        if (post.id === action.post.id) {
+          return action.post;
+        } else {
+          return post;
+        }
+      });
+      return {
+        ...state,
+        postsList: posts
+      };
     default:
       return state;
   }

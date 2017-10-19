@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPostAction, getAllCategories} from '../../02-actions/posts/postsActions';
+import {addPostAction, getAllCategories, votePost} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
-import {POST_DEFAULT_VALUES} from '../../constants/posts/posts';
+import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
 class PostsList extends PureComponent {
@@ -31,6 +31,18 @@ class PostsList extends PureComponent {
     this.props.hideModalAction();
   }
 
+  votePositive(postId) {
+    this.votePost(postId, VOTE_POSITIVE);
+  }
+
+  voteNegative(postId) {
+    this.votePost(postId, VOTE_NEGATIVE);
+  }
+
+  votePost(postId, vote) {
+    this.props.votePost(postId, vote);
+  }
+
   render() {
     const {postsList} = this.props;
     return (
@@ -45,6 +57,8 @@ class PostsList extends PureComponent {
                       author={post.author}
                       category={post.category}
                       voteScore={post.voteScore}
+                      votePositive={this.votePositive.bind(this)}
+                      voteNegative={this.voteNegative.bind(this)}
             />
           )}
           <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
@@ -65,6 +79,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
     addPostAction: (newPost) => dispatch(addPostAction(newPost)),
+    votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
     getAllCategories: () => dispatch(getAllCategories())
   }

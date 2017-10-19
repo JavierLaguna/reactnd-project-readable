@@ -16,7 +16,9 @@ export default class PostCard extends PureComponent {
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     voteScore: PropTypes.number.isRequired,
-    numberOfComments: PropTypes.number.isRequired
+    numberOfComments: PropTypes.number.isRequired,
+    votePositive: PropTypes.func.isRequired,
+    voteNegative: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -27,7 +29,11 @@ export default class PostCard extends PureComponent {
     author: '',
     category: '',
     voteScore: 0,
-    numberOfComments: 0
+    numberOfComments: 0,
+    votePositive: () => {
+    },
+    voteNegative: () => {
+    }
   };
 
   state = {};
@@ -42,7 +48,7 @@ export default class PostCard extends PureComponent {
   }
 
   render() {
-    const {id, timestamp, title, body, author, category, voteScore, numberOfComments} = this.props;
+    const {id, timestamp, title, body, author, category, voteScore, numberOfComments, votePositive, voteNegative} = this.props;
     const formattedDate = this.convertDate(timestamp);
     const logos = {
       react: reactLogo,
@@ -67,7 +73,12 @@ export default class PostCard extends PureComponent {
           </div>
           <div className='post-card-score-content'>
             <div className='post-card-score-content__left'>
-              <i className='fa fa-thumbs-o-up post-card-score-content__left-hand' title='Vote positive'/>
+              <i className='fa fa-thumbs-o-up post-card-score-content__left-hand'
+                 title='Vote positive'
+                 onClick={() => {
+                   votePositive(id)
+                 }}
+              />
               <div className="half-circle-left"/>
             </div>
             <span className={ClassNames({
@@ -79,7 +90,12 @@ export default class PostCard extends PureComponent {
             </span>
             <div className='post-card-score-content__right'>
               <div className="half-circle-right"/>
-              <i className='fa fa-thumbs-o-down post-card-score-content__right-hand' title='Vote negative'/>
+              <i className='fa fa-thumbs-o-down post-card-score-content__right-hand'
+                 title='Vote negative'
+                 onClick={() => {
+                   voteNegative(id)
+                 }}
+              />
             </div>
           </div>
           <div className='post-card-footer-content'>

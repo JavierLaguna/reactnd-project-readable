@@ -17,12 +17,27 @@ export function setAllPostAction(posts) {
   }
 }
 
+export function setPostAction(post) {
+  return {
+    type: types.SET_POST,
+    post
+  }
+}
+
 // ------------------------------ ASYNC ACTIONS  ------------------------------
 
 export function getAllCategories() {
   return dispatch => {
     PostsService.getAllPosts((posts) => {
       dispatch(setAllPostAction(posts))
+    })
+  }
+}
+
+export function votePost(postId, vote) {
+  return dispatch => {
+    PostsService.votePost(postId, vote, (data) => {
+      dispatch(setPostAction(data))
     })
   }
 }
