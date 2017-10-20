@@ -10,17 +10,24 @@ function addPostAction(newPost) {
   }
 }
 
-export function setAllPostAction(posts) {
+function setAllPostAction(posts) {
   return {
     type: types.SET_ALL_POSTS,
     posts
   }
 }
 
-export function setPostAction(post) {
+function setPostAction(post) {
   return {
     type: types.SET_POST,
     post
+  }
+}
+
+function deletePostAction(postId) {
+  return {
+    type: types.DELETE_POST,
+    postId
   }
 }
 
@@ -46,6 +53,14 @@ export function addPost(newPost) {
   return dispatch => {
     PostsService.addPost(newPost, (data) => {
       dispatch(addPostAction(newPost))
+    })
+  }
+}
+
+export function deletePost(postId) {
+  return dispatch => {
+    PostsService.deletePost(postId, (data) => {
+      dispatch(deletePostAction(postId))
     })
   }
 }

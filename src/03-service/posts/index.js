@@ -20,3 +20,7 @@ export function addPost(newPost, callback, error) {
   };
   executeServiceCallWithData(`/posts`, data, callback, error);
 }
+
+export function deletePost(postId, callback, error) {
+  executeServiceCall(`/posts/${postId}`, callback, error, 'DELETE');
+}

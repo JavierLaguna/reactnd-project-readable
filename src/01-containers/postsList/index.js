@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPost, getAllCategories, votePost} from '../../02-actions/posts/postsActions';
+import {addPost, getAllCategories, votePost, deletePost} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
@@ -43,6 +43,10 @@ class PostsList extends PureComponent {
     this.props.votePost(postId, vote);
   }
 
+  deletePost(postId) {
+    this.props.deletePost(postId);
+  }
+
   render() {
     const {postsList} = this.props;
     return (
@@ -59,6 +63,7 @@ class PostsList extends PureComponent {
                       voteScore={post.voteScore}
                       votePositive={this.votePositive.bind(this)}
                       voteNegative={this.voteNegative.bind(this)}
+                      deletePost={this.deletePost.bind(this)}
             />
           )}
           <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
@@ -70,7 +75,7 @@ class PostsList extends PureComponent {
 
 const mapStateToProps = ({posts, categories}) => {
   return {
-    postsList: posts.postsList,
+    postsList: posts.postsList.filter((post)=> !post.deleted),
     categories: categories.categoriesList
   };
 };
@@ -81,7 +86,8 @@ const mapDispatchToProps = (dispatch) => {
     addPost: (newPost) => dispatch(addPost(newPost)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
-    getAllCategories: () => dispatch(getAllCategories())
+    getAllCategories: () => dispatch(getAllCategories()),
+    deletePost: (postId) => dispatch(deletePost(postId))
   }
 };
 
