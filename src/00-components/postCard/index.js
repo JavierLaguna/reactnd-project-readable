@@ -1,10 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
-import './postCard.css';
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
+import DropdownOption from '../dropdownMenu/DropdownOption';
+import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
 import reactLogo from '../../assets/images/react-logo.png';
 import reduxLogo from '../../assets/images/redux-logo.png';
 import udacityLogo from '../../assets/images/udacity-logo.png';
+import './postCard.css';
 
 export default class PostCard extends PureComponent {
 
@@ -18,7 +21,8 @@ export default class PostCard extends PureComponent {
     voteScore: PropTypes.number.isRequired,
     numberOfComments: PropTypes.number.isRequired,
     votePositive: PropTypes.func.isRequired,
-    voteNegative: PropTypes.func.isRequired
+    voteNegative: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -33,6 +37,8 @@ export default class PostCard extends PureComponent {
     votePositive: () => {
     },
     voteNegative: () => {
+    },
+    deletePost: () => {
     }
   };
 
@@ -48,7 +54,7 @@ export default class PostCard extends PureComponent {
   }
 
   render() {
-    const {id, timestamp, title, body, author, category, voteScore, numberOfComments, votePositive, voteNegative} = this.props;
+    const {id, timestamp, title, body, author, category, voteScore, numberOfComments, votePositive, voteNegative, deletePost} = this.props;
     const formattedDate = this.convertDate(timestamp);
     const logos = {
       react: reactLogo,
@@ -59,6 +65,20 @@ export default class PostCard extends PureComponent {
       <div className='post-card-container'>
         <div className='post-card-header'>
           <span className='post-card-header__title'>{title}</span>
+          <div className='post-card-header__options'>
+            <DropdownMenu title='' iconClass='fa fa-cog'>
+              <DropdownOption title="Edit post"
+                              iconClass="fa fa-edit"
+              />
+              <DropdownSeparator/>
+              <DropdownOption title="Delete post"
+                              iconClass="fa fa-trash"
+                              onClick={() => {
+                                deletePost(id)
+                              }}
+              />
+            </DropdownMenu>
+          </div>
         </div>
         <div className='post-card-subheader'>
           <img className='post-card-subheader__image'

@@ -27,6 +27,16 @@ export default function postsReducer(state = postsInitialState, action) {
         ...state,
         postsList: posts
       };
+    case types.DELETE_POST :
+      return {
+        ...state,
+        postsList: state.postsList.map((post) => {
+          if (post.id === action.postId) {
+            post.deleted = true;
+          }
+          return post;
+        })
+      };
     default:
       return state;
   }

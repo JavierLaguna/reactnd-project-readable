@@ -10,5 +10,17 @@ export function votePost(postId, vote, callback, error) {
 }
 
 export function addPost(newPost, callback, error) {
-  executeServiceCallWithData(`/posts`, newPost, callback, error);
+  const data = {
+    id: newPost.id,
+    timestamp: newPost.timestamp,
+    title: newPost.title,
+    body: newPost.body,
+    author: newPost.author,
+    category: newPost.category
+  };
+  executeServiceCallWithData(`/posts`, data, callback, error);
+}
+
+export function deletePost(postId, callback, error) {
+  executeServiceCall(`/posts/${postId}`, callback, error, 'DELETE');
 }
