@@ -2,7 +2,8 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import CreatePost from '../../00-components/createPost';
-import {CREATE_POST_MODAL} from '../../constants/app/modal';
+import EditPost from '../../00-components/editPost';
+import {CREATE_POST_MODAL, EDIT_POST_MODAL} from '../../constants/app/modal';
 import {hideModalAction} from '../../02-actions/app/modalActions';
 import './index.css';
 
@@ -11,6 +12,9 @@ class ModalContainer extends PureComponent {
     modalComponents: {
       [CREATE_POST_MODAL]: (() => {
         return (<CreatePost {...this.props.containerProps}/>)
+      }),
+      [EDIT_POST_MODAL]: (() => {
+        return (<EditPost {...this.props.containerProps}/>)
       })
     }
   };

@@ -1,17 +1,28 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty as _isEmpty} from 'lodash';
 import './index.css';
 
 export default class Post extends PureComponent {
   static propTypes = {
     saveChanges: PropTypes.func.isRequired,
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array.isRequired,
+    post: PropTypes.object,
+    disabledTitle: PropTypes.bool,
+    disabledAuthor: PropTypes.bool,
+    disabledCategory: PropTypes.bool,
+    disabledBody: PropTypes.bool
   };
 
   static defaultProps = {
     saveChanges: () => {
     },
-    categories: []
+    categories: [],
+    post: {},
+    disabledTitle: false,
+    disabledAuthor: false,
+    disabledCategory: false,
+    disabledBody: false
   };
 
   state = {
@@ -20,6 +31,17 @@ export default class Post extends PureComponent {
     category: '',
     body: ''
   };
+
+  componentWillMount() {
+    if (!_isEmpty(this.props.post)) {
+      this.setState({
+        title: this.props.post.title,
+        author: this.props.post.author,
+        category: this.props.post.category,
+        body: this.props.post.body
+      });
+    }
+  }
 
   onChangeField(value, field) {
     this.setState({
@@ -44,7 +66,7 @@ export default class Post extends PureComponent {
 
   render() {
     const {title, author, category, body} = this.state;
-    const {categories} = this.props;
+    const {categories, disabledTitle, disabledAuthor, disabledCategory, disabledBody} = this.props;
 
     return (
       <div className='post-container'>
@@ -55,6 +77,7 @@ export default class Post extends PureComponent {
                    name='title'
                    value={title}
                    onChange={this.onInputChange.bind(this)}
+                   disabled={disabledTitle}
                    required
             />
           </div>
@@ -64,6 +87,7 @@ export default class Post extends PureComponent {
                    name='author'
                    value={author}
                    onChange={this.onInputChange.bind(this)}
+                   disabled={disabledAuthor}
                    required
             />
           </div>
@@ -73,7 +97,7 @@ export default class Post extends PureComponent {
                     name='category'
                     value={category}
                     onChange={this.onInputChange.bind(this)}
-                    disabled={categories.length === 0}
+                    disabled={categories.length === 0 || disabledCategory}
                     required
             >
               <option value='' disabled>Categories...</option>
@@ -88,6 +112,7 @@ export default class Post extends PureComponent {
                       name='body'
                       value={body}
                       onChange={this.onInputChange.bind(this)}
+                      disabled={disabledBody}
                       required
             />
           </div>
