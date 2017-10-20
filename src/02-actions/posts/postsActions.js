@@ -3,7 +3,7 @@ import * as PostsService from '../../03-service/posts';
 
 // ------------------------------ ACTIONS  ------------------------------
 
-export function addPostAction(newPost) {
+function addPostAction(newPost) {
   return {
     type: types.ADD_POST,
     newPost
@@ -38,6 +38,14 @@ export function votePost(postId, vote) {
   return dispatch => {
     PostsService.votePost(postId, vote, (data) => {
       dispatch(setPostAction(data))
+    })
+  }
+}
+
+export function addPost(newPost) {
+  return dispatch => {
+    PostsService.addPost(newPost, (data) => {
+      dispatch(addPostAction(newPost))
     })
   }
 }

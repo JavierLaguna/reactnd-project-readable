@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPostAction, getAllCategories, votePost} from '../../02-actions/posts/postsActions';
+import {addPost, getAllCategories, votePost} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
@@ -27,7 +27,7 @@ class PostsList extends PureComponent {
     newPost.timestamp = POST_DEFAULT_VALUES.timestamp();
     newPost.voteScore = POST_DEFAULT_VALUES.voteScore;
     newPost.deleted = POST_DEFAULT_VALUES.deleted;
-    this.props.addPostAction(newPost);
+    this.props.addPost(newPost);
     this.props.hideModalAction();
   }
 
@@ -78,7 +78,7 @@ const mapStateToProps = ({posts, categories}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
-    addPostAction: (newPost) => dispatch(addPostAction(newPost)),
+    addPost: (newPost) => dispatch(addPost(newPost)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
     getAllCategories: () => dispatch(getAllCategories())
