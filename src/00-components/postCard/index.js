@@ -1,10 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
-import './postCard.css';
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
+import DropdownOption from '../dropdownMenu/DropdownOption';
+import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
 import reactLogo from '../../assets/images/react-logo.png';
 import reduxLogo from '../../assets/images/redux-logo.png';
 import udacityLogo from '../../assets/images/udacity-logo.png';
+import './postCard.css';
 
 export default class PostCard extends PureComponent {
 
@@ -59,6 +62,15 @@ export default class PostCard extends PureComponent {
       <div className='post-card-container'>
         <div className='post-card-header'>
           <span className='post-card-header__title'>{title}</span>
+          <div className='post-card-header__options'>
+            <DropdownMenu title='' iconClass='fa fa-cog'>
+              <DropdownOption title="Edit post"
+                              iconClass="fa fa-edit"/>
+              <DropdownSeparator/>
+              <DropdownOption title="Delete post"
+                              iconClass="fa fa-trash"/>
+            </DropdownMenu>
+          </div>
         </div>
         <div className='post-card-subheader'>
           <img className='post-card-subheader__image'
