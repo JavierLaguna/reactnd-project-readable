@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 import './postCard.css';
+import reactLogo from '../../assets/images/react-logo.png';
+import reduxLogo from '../../assets/images/redux-logo.png';
+import udacityLogo from '../../assets/images/udacity-logo.png';
 
 export default class PostCard extends PureComponent {
 
@@ -41,10 +44,22 @@ export default class PostCard extends PureComponent {
   render() {
     const {id, timestamp, title, body, author, category, voteScore, numberOfComments} = this.props;
     const formattedDate = this.convertDate(timestamp);
+    const logos = {
+      react: reactLogo,
+      redux: reduxLogo,
+      udacity: udacityLogo
+    };
     return (
       <div className='post-card-container'>
         <div className='post-card-header'>
           <span className='post-card-header__title'>{title}</span>
+        </div>
+        <div className='post-card-subheader'>
+          <img className='post-card-subheader__image'
+               alt={`${category}-logo`}
+               src={logos[category]}
+          />
+          <span className={`post-card-subheader__title post-card-subheader__title_color_${category}`}>{category}</span>
         </div>
         <div className='post-card-body'>
           <div className='post-card-text-content'>
