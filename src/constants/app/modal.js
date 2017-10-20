@@ -7,3 +7,4 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 // OTHERS
 
 export const CREATE_POST_MODAL = 'CREATE_POST_MODAL';
+export const EDIT_POST_MODAL = 'EDIT_POST_MODAL';

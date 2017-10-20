@@ -22,7 +22,8 @@ export default class PostCard extends PureComponent {
     numberOfComments: PropTypes.number.isRequired,
     votePositive: PropTypes.func.isRequired,
     voteNegative: PropTypes.func.isRequired,
-    deletePost: PropTypes.func.isRequired
+    deletePost: PropTypes.func.isRequired,
+    editPost: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -39,6 +40,8 @@ export default class PostCard extends PureComponent {
     voteNegative: () => {
     },
     deletePost: () => {
+    },
+    editPost: () => {
     }
   };
 
@@ -54,7 +57,20 @@ export default class PostCard extends PureComponent {
   }
 
   render() {
-    const {id, timestamp, title, body, author, category, voteScore, numberOfComments, votePositive, voteNegative, deletePost} = this.props;
+    const {
+      id,
+      timestamp,
+      title,
+      body,
+      author,
+      category,
+      voteScore,
+      numberOfComments,
+      votePositive,
+      voteNegative,
+      deletePost,
+      editPost
+    } = this.props;
     const formattedDate = this.convertDate(timestamp);
     const logos = {
       react: reactLogo,
@@ -69,6 +85,9 @@ export default class PostCard extends PureComponent {
             <DropdownMenu title='' iconClass='fa fa-cog'>
               <DropdownOption title="Edit post"
                               iconClass="fa fa-edit"
+                              onClick={() => {
+                                editPost(id)
+                              }}
               />
               <DropdownSeparator/>
               <DropdownOption title="Delete post"

@@ -65,6 +65,15 @@ export function deletePost(postId) {
   }
 }
 
+export function editPost(post) {
+  return dispatch => {
+    PostsService.editPost(post, (data) => {
+      debugger
+
+    })
+  }
+}
+
 // ------------------------------ FUNCTIONS  ------------------------------
 
 export function generateUUID() {

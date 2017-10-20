@@ -24,3 +24,11 @@ export function addPost(newPost, callback, error) {
 export function deletePost(postId, callback, error) {
   executeServiceCall(`/posts/${postId}`, callback, error, 'DELETE');
 }
+
+export function editPost(post, callback, error) {
+  const data = {
+    title: post.title,
+    body: post.body
+  };
+  executeServiceCallWithData(`/posts/${post.id}`, data, callback, error, 'PUT');
+}

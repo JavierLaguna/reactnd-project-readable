@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPost, getAllCategories, votePost, deletePost} from '../../02-actions/posts/postsActions';
-import {CREATE_POST_MODAL} from '../../constants/app/modal';
+import {addPost, getAllCategories, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import {CREATE_POST_MODAL, EDIT_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
@@ -47,6 +47,25 @@ class PostsList extends PureComponent {
     this.props.deletePost(postId);
   }
 
+  editPost(postId) {
+    let post = this.props.postsList.filter((post) => post.id === postId);
+    post = post[0];
+    const containerProps = {
+      saveChanges: (editedPost) => {
+        editedPost = {
+          ...post,
+          ...editedPost
+        };
+        this.props.editPost(editedPost);
+        this.props.hideModalAction();
+      },
+      categories: this.props.categories,
+      post
+    };
+    this.props.showModalAction(EDIT_POST_MODAL, containerProps);
+  }
+
+
   render() {
     const {postsList} = this.props;
     return (
@@ -64,6 +83,7 @@ class PostsList extends PureComponent {
                       votePositive={this.votePositive.bind(this)}
                       voteNegative={this.voteNegative.bind(this)}
                       deletePost={this.deletePost.bind(this)}
+                      editPost={this.editPost.bind(this)}
             />
           )}
           <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
@@ -75,7 +95,7 @@ class PostsList extends PureComponent {
 
 const mapStateToProps = ({posts, categories}) => {
   return {
-    postsList: posts.postsList.filter((post)=> !post.deleted),
+    postsList: posts.postsList.filter((post) => !post.deleted),
     categories: categories.categoriesList
   };
 };
@@ -84,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
     addPost: (newPost) => dispatch(addPost(newPost)),
+    editPost: (post) => dispatch(editPost(post)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
     getAllCategories: () => dispatch(getAllCategories()),
