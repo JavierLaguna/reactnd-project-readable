@@ -1,5 +1,5 @@
 const URL_PATH = 'http://localhost:3001';
-const HEADERS = {'Authorization': 'JavierLaguna'};
+const HEADERS = {'Authorization': 'JavierLaguna', 'Accept': 'application/json'};
 
 export function executeServiceCall(URL, callback = () => {}, errorCallback = () => {}, method = 'GET') {
   fetch(`${URL_PATH}${URL}`,
@@ -20,7 +20,7 @@ export function executeServiceCallWithData(URL, data, callback = () => {}, error
   fetch(`${URL_PATH}${URL}`,
     {
       method: method,
-      headers: HEADERS,
+      headers: {...HEADERS, 'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     })
     .then(response => response.json())
