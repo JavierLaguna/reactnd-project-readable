@@ -67,7 +67,8 @@ class PostsList extends PureComponent {
 
 
   render() {
-    const {postsList} = this.props;
+    const {postsList, comments} = this.props;
+
     return (
       <div className='posts-list-container'>
         <div className='posts-list'>
@@ -84,6 +85,7 @@ class PostsList extends PureComponent {
                       voteNegative={this.voteNegative.bind(this)}
                       deletePost={this.deletePost.bind(this)}
                       editPost={this.editPost.bind(this)}
+                      numberOfComments={comments[post.id] ? comments[post.id].length : 0}
             />
           )}
           <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
@@ -93,10 +95,11 @@ class PostsList extends PureComponent {
   }
 }
 
-const mapStateToProps = ({posts, categories}) => {
+const mapStateToProps = ({posts, categories, comments}) => {
   return {
     postsList: posts.postsList.filter((post) => !post.deleted),
-    categories: categories.categoriesList
+    categories: categories.categoriesList,
+    comments: comments.commentsList
   };
 };
 
