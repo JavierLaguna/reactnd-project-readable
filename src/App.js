@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import Header from './01-containers/header';
 import Modal from './01-containers/modal';
 import PostsList from './01-containers/postsList';
+import Post from './01-containers/post';
 import {getAllCategories} from './02-actions/categories/categoriesActions';
+import {Route} from 'react-router-dom';
 
 class App extends PureComponent {
   componentDidMount() {
@@ -14,8 +16,9 @@ class App extends PureComponent {
     return (
       <div className="app">
         <Header/>
-        <PostsList/>
         <Modal/>
+        <Route exact path='/' component={PostsList}/>
+        <Route exact path='/post' component={Post}/>
       </div>
     );
   }
@@ -32,3 +35,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+
+
