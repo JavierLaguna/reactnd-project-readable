@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import DropdownOption from '../dropdownMenu/DropdownOption';
 import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
+import CategoryLogo from '../categoryLogo';
 import reactLogo from '../../assets/images/react-logo.png';
 import reduxLogo from '../../assets/images/redux-logo.png';
 import udacityLogo from '../../assets/images/udacity-logo.png';
@@ -93,11 +94,7 @@ export default class PostCard extends PureComponent {
           </div>
         </div>
         <div className='post-card-subheader'>
-          <img className='post-card-subheader__image'
-               alt={`${category}-logo`}
-               src={logos[category]}
-          />
-          <span className={`post-card-subheader__title post-card-subheader__title_color_${category}`}>{category}</span>
+          <CategoryLogo category={category}/>
         </div>
         <div className='post-card-body'>
           <div className='post-card-text-content'>

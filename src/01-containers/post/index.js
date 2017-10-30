@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
 import {addPost, getAllPosts, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import CategoryLogo from '../../00-components/categoryLogo';
 import {convertDate} from '../../utils/dates';
 import './index.css';
 
@@ -35,7 +36,22 @@ class Post extends PureComponent {
             </div>
           </div>
           <div className='post__post-footer'>
-            aAA
+            <CategoryLogo category={post.category}/>
+            <div className='post__post-votes'>
+              <span className='post__post-score'>{post.voteScore}</span>
+              <i className='fa fa-thumbs-o-up post__post-up-hand'
+                 title='Vote positive'
+                 onClick={() => {
+                   // votePositive(id)
+                 }}
+              />
+              <i className='fa fa-thumbs-o-down post__post-down-hand'
+                 title='Vote negative'
+                 onClick={() => {
+                   // voteNegative(id)
+                 }}
+              />
+            </div>
           </div>
         </div>
       </div>

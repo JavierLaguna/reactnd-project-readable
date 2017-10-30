@@ -52,3 +52,35 @@
 .post__body-option:hover {
   color: #009AF8;
 }
+
+.post__post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.post__post-votes {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60px;
+}
+
+.post__post-score {
+  font-size: 28px;
+  color: #C5F299;
+}
+
+.post__post-up-hand:hover{
+  cursor: pointer;
+  color: #C5F299;
+  transform: scale(1.3);
+}
+
+.post__post-down-hand:hover{
+  cursor: pointer;
+  color: #FF0043;
+  transform: scale(1.3);
+}

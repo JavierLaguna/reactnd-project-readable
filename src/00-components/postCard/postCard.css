@@ -48,29 +48,6 @@
   align-items: center;
 }
 
-.post-card-subheader__image {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
-}
-
-.post-card-subheader__title {
-  text-transform: capitalize;
-  font-size: 16px;
-}
-
-.post-card-subheader__title_color_react {
-  color: #61DAFB;
-}
-
-.post-card-subheader__title_color_redux {
-  color: #764ABC;
-}
-
-.post-card-subheader__title_color_udacity {
-  color: #02B2E3;
-}
-
 .post-card-body {
   display: flex;
   flex-direction: column;
