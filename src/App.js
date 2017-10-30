@@ -5,11 +5,13 @@ import Modal from './01-containers/modal';
 import PostsList from './01-containers/postsList';
 import Post from './01-containers/post';
 import {getAllCategories} from './02-actions/categories/categoriesActions';
+import {getAllPosts} from './02-actions/posts/postsActions';
 import {Route} from 'react-router-dom';
 
 class App extends PureComponent {
   componentDidMount() {
     this.props.getAllCategories();
+    this.props.getAllPosts();
   }
 
   render() {
@@ -18,7 +20,7 @@ class App extends PureComponent {
         <Header/>
         <Modal/>
         <Route exact path='/' component={PostsList}/>
-        <Route exact path='/post' component={Post}/>
+        <Route path='/post/:postId' component={Post}/>
       </div>
     );
   }
@@ -30,7 +32,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllCategories: () => dispatch(getAllCategories())
+    getAllCategories: () => dispatch(getAllCategories()),
+    getAllPosts: () => dispatch(getAllPosts())
   }
 };
 

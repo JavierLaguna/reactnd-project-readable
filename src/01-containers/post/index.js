@@ -6,11 +6,18 @@ import './index.css';
 
 class Post extends PureComponent {
   render() {
-    const {postsList, comments} = this.props;
+    const {postsList, comments, match} = this.props;
+    const {postId} = match.params;
+    const post = postsList.filter((post) => {
+      return postId === post.id;
+    })[0];
+    const postComments = comments[postId] || [];
 
     return (
       <div className='post'>
-        aaa
+        <div className='post__post-content'>
+          AA
+        </div>
       </div>
     );
   }

@@ -18,16 +18,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   color: #ffffff;
-}
-
-.post-card-header:hover {
-  color: #009AF8;
 }
 
 .post-card-header__title {
   font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.post-card-header__title:hover {
+  color: #009AF8;
 }
 
 .post-card-header__options {
@@ -191,5 +192,6 @@
 }
 
 .post-card-footer-content__right {
+  cursor: default;
   display: flex;
 }

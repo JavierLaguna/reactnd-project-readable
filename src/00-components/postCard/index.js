@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
+import {Link} from 'react-router-dom';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import DropdownOption from '../dropdownMenu/DropdownOption';
 import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
@@ -80,7 +81,7 @@ export default class PostCard extends PureComponent {
     return (
       <div className='post-card-container'>
         <div className='post-card-header'>
-          <span className='post-card-header__title'>{title}</span>
+            <Link to={`/post/${id}`} className='post-card-header__title'>{title}</Link>
           <div className='post-card-header__options'>
             <DropdownMenu title='' iconClass='fa fa-cog'>
               <DropdownOption title="Edit post"

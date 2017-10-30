@@ -3,17 +3,12 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPost, getAllPosts, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import {addPost, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL, EDIT_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
 class PostsList extends PureComponent {
-
-  componentWillMount() {
-    this.props.getAllPosts();
-  }
-
   openNewPostModal() {
     const containerProps = {
       saveChanges: this.addNewPost.bind(this),
@@ -110,7 +105,6 @@ const mapDispatchToProps = (dispatch) => {
     editPost: (post) => dispatch(editPost(post)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
-    getAllPosts: () => dispatch(getAllPosts()),
     deletePost: (postId) => dispatch(deletePost(postId))
   }
 };
