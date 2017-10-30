@@ -8,6 +8,7 @@ import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
 import reactLogo from '../../assets/images/react-logo.png';
 import reduxLogo from '../../assets/images/redux-logo.png';
 import udacityLogo from '../../assets/images/udacity-logo.png';
+import {convertDate} from '../../utils/dates';
 import './postCard.css';
 
 export default class PostCard extends PureComponent {
@@ -48,15 +49,6 @@ export default class PostCard extends PureComponent {
 
   state = {};
 
-  convertDate(inputFormat) {
-    function pad(s) {
-      return (s < 10) ? '0' + s : s;
-    }
-
-    const d = new Date(inputFormat);
-    return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
-  }
-
   render() {
     const {
       id,
@@ -72,7 +64,7 @@ export default class PostCard extends PureComponent {
       deletePost,
       editPost
     } = this.props;
-    const formattedDate = this.convertDate(timestamp);
+    const formattedDate = convertDate(timestamp);
     const logos = {
       react: reactLogo,
       redux: reduxLogo,
