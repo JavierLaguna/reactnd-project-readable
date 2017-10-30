@@ -60,7 +60,6 @@ class PostsList extends PureComponent {
     this.props.showModalAction(EDIT_POST_MODAL, containerProps);
   }
 
-
   render() {
     const {postsList, comments} = this.props;
 

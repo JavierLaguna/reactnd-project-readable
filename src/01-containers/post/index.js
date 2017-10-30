@@ -22,6 +22,24 @@ class Post extends PureComponent {
     this.props.votePost(postId, vote);
   }
 
+  editPost(postId) {
+    let post = this.props.postsList.filter((post) => post.id === postId);
+    post = post[0];
+    const containerProps = {
+      saveChanges: (editedPost) => {
+        editedPost = {
+          ...post,
+          ...editedPost
+        };
+        this.props.editPost(editedPost);
+        this.props.hideModalAction();
+      },
+      categories: this.props.categories,
+      post
+    };
+    this.props.showModalAction(EDIT_POST_MODAL, containerProps);
+  }
+
   render() {
     const {postsList, comments, match} = this.props;
     const {postId} = match.params;
@@ -46,8 +64,12 @@ class Post extends PureComponent {
               "{post.body}"
             </div>
             <div className='post__body-options'>
-              <span className='post__body-option'><i className='fa fa-edit'/>Edit</span>
-              <span className='post__body-option'><i className='fa fa-trash'/>Delete</span>
+              <span className='post__body-option' onClick={this.editPost.bind(this, postId)}>
+                <i className='fa fa-edit'/>Edit
+              </span>
+              <span className='post__body-option'>
+                <i className='fa fa-trash'/>Delete
+              </span>
             </div>
           </div>
           <div className='post__post-footer'>
