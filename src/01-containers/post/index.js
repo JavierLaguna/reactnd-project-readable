@@ -1,12 +1,27 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import ClassNames from 'classnames';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPost, getAllPosts, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import CategoryLogo from '../../00-components/categoryLogo';
 import {convertDate} from '../../utils/dates';
+import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import {EDIT_POST_MODAL} from '../../constants/app/modal';
+import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
 class Post extends PureComponent {
+  votePositive(postId) {
+    this.votePost(postId, VOTE_POSITIVE);
+  }
+
+  voteNegative(postId) {
+    this.votePost(postId, VOTE_NEGATIVE);
+  }
+
+  votePost(postId, vote) {
+    this.props.votePost(postId, vote);
+  }
+
   render() {
     const {postsList, comments, match} = this.props;
     const {postId} = match.params;
@@ -38,17 +53,22 @@ class Post extends PureComponent {
           <div className='post__post-footer'>
             <CategoryLogo category={post.category}/>
             <div className='post__post-votes'>
-              <span className='post__post-score'>{post.voteScore}</span>
+              <span className={ClassNames({
+                'post__post-score': true,
+                'post__post-score_color_red': post.voteScore < 0
+              })}>
+                {post.voteScore}
+                </span>
               <i className='fa fa-thumbs-o-up post__post-up-hand'
                  title='Vote positive'
                  onClick={() => {
-                   // votePositive(id)
+                   this.votePositive(postId)
                  }}
               />
               <i className='fa fa-thumbs-o-down post__post-down-hand'
                  title='Vote negative'
                  onClick={() => {
-                   // voteNegative(id)
+                   this.voteNegative(postId)
                  }}
               />
             </div>
@@ -70,11 +90,9 @@ const mapStateToProps = ({posts, categories, comments}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
-    addPost: (newPost) => dispatch(addPost(newPost)),
     editPost: (post) => dispatch(editPost(post)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
-    getAllPosts: () => dispatch(getAllPosts()),
     deletePost: (postId) => dispatch(deletePost(postId))
   }
 };
