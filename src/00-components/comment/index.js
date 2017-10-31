@@ -10,10 +10,10 @@ export default class Comment extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     parentId: PropTypes.string.isRequired,
-    timestamp: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
     body: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    voteScore: PropTypes.string.isRequired,
+    voteScore: PropTypes.number.isRequired,
     deleted: PropTypes.bool.isRequired,
     parentDeleted: PropTypes.bool.isRequired
   };
@@ -21,10 +21,10 @@ export default class Comment extends PureComponent {
   static defaultProps = {
     id: '',
     parentId: '',
-    timestamp: '',
+    timestamp: 0,
     body: '',
     author: '',
-    voteScore: '',
+    voteScore: 0,
     deleted: false,
     parentDeleted: false
   };

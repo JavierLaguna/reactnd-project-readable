@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ClassNames from 'classnames';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
 import CategoryLogo from '../../00-components/categoryLogo';
-import Comment from '../../00-components/comment';
+import CommentsList from '../../00-components/commentsList';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
@@ -102,20 +102,9 @@ class Post extends PureComponent {
             </div>
           </div>
         </div>
-        <div className='post__comments-container'>
-          {postComments.map((comment, index) => (
-            <Comment key={index}
-                     id={comment.id}
-                     parentId={comment.parentId}
-                     voteScore={comment.voteScore}
-                     author={comment.author}
-                     deleted={comment.deleted}
-                     timestamp={comment.timestamp}
-                     body={comment.body}
-                     parentDeleted={comment.parentDeleted}
-            />
-          ))}
-        </div>
+        <CommentsList className='post__comments-container'
+                      comments={postComments}
+        />
       </div>
     );
   }
