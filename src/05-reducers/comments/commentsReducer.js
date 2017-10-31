@@ -14,6 +14,20 @@ export default function commentsReducer(state = commentsInitialState, action) {
         ...state,
         commentsList
       };
+    case types.SET_COMMENT :
+      let comments = {...state.commentsList};
+      comments[action.comment.parentId] = comments[action.comment.parentId].map((comment) => {
+
+        if (comment.id === action.comment.id) {
+          return action.comment;
+        } else {
+          return comment;
+        }
+      });
+      return {
+        ...state,
+        commentsList: comments
+      };
     default:
       return state;
   }

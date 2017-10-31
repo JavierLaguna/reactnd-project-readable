@@ -15,7 +15,9 @@ export default class Comment extends PureComponent {
     author: PropTypes.string.isRequired,
     voteScore: PropTypes.number.isRequired,
     deleted: PropTypes.bool.isRequired,
-    parentDeleted: PropTypes.bool.isRequired
+    parentDeleted: PropTypes.bool.isRequired,
+    votePositive: PropTypes.func.isRequired,
+    voteNegative: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -26,7 +28,11 @@ export default class Comment extends PureComponent {
     author: '',
     voteScore: 0,
     deleted: false,
-    parentDeleted: false
+    parentDeleted: false,
+    votePositive: () => {
+    },
+    voteNegative: () => {
+    }
   };
 
   state = {};
@@ -54,16 +60,12 @@ export default class Comment extends PureComponent {
     // this.props.deleteComment(postId);
   }
 
-  votePositive(postId) {//TODO
-    this.votePost(postId, VOTE_POSITIVE);
+  votePositive() {
+    this.props.votePositive(this.props.id);
   }
 
-  voteNegative(postId) {//TODO
-    this.votePost(postId, VOTE_NEGATIVE);
-  }
-
-  votePost(postId, vote) {//TODO
-    this.props.votePost(postId, vote);
+  voteNegative() {
+    this.props.voteNegative(this.props.id);
   }
 
   render() {

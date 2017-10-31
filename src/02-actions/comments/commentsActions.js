@@ -10,6 +10,13 @@ function addCommentAction(comment) {
   }
 }
 
+function setCommentAction(comment) {
+  return {
+    type: types.SET_COMMENT,
+    comment
+  }
+}
+
 // ------------------------------ ASYNC ACTIONS  ------------------------------
 
 export function getCommentsByPost(postId) {
@@ -18,6 +25,14 @@ export function getCommentsByPost(postId) {
       comments.map((comment)=>{
         dispatch(addCommentAction(comment))
       });
+    });
+  }
+}
+
+export function voteComment(commentId, vote) {
+  return dispatch => {
+    CommentsService.voteComment(commentId, vote, (comment) => {
+      dispatch(setCommentAction(comment))
     });
   }
 }
