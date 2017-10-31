@@ -41,7 +41,7 @@
 
 .comment__body-options {
   display: flex;
-  width: 110px;
+  width: 35px;
   justify-content: space-between;
 }
 
@@ -55,7 +55,7 @@
 
 .comment__footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 8px;
 }

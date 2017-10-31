@@ -14,8 +14,8 @@ export default class Comment extends PureComponent {
     body: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     voteScore: PropTypes.string.isRequired,
-    deleted: PropTypes.string.isRequired,
-    parentDeleted: PropTypes.string.isRequired
+    deleted: PropTypes.bool.isRequired,
+    parentDeleted: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
@@ -25,8 +25,8 @@ export default class Comment extends PureComponent {
     body: '',
     author: '',
     voteScore: '',
-    deleted: '',
-    parentDeleted: ''
+    deleted: false,
+    parentDeleted: false
   };
 
   state = {};
@@ -95,10 +95,10 @@ export default class Comment extends PureComponent {
             </div>
             <div className='comment__body-options'>
               <span className='comment__body-option' onClick={this.editComment.bind(this, id)}>
-                <i className='fa fa-edit'/>Edit
+                <i className='fa fa-edit'/>
               </span>
               <span className='comment__body-option' onClick={this.deleteComment.bind(this, id)}>
-                <i className='fa fa-trash'/>Delete
+                <i className='fa fa-trash'/>
               </span>
             </div>
           </div>

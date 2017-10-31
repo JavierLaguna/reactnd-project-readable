@@ -71,10 +71,10 @@ class Post extends PureComponent {
             </div>
             <div className='post__body-options'>
               <span className='post__body-option' onClick={this.editPost.bind(this, postId)}>
-                <i className='fa fa-edit'/>Edit
+                <i className='fa fa-edit'/>
               </span>
               <span className='post__body-option' onClick={this.deletePost.bind(this, postId)}>
-                <i className='fa fa-trash'/>Delete
+                <i className='fa fa-trash'/>
               </span>
             </div>
           </div>
@@ -103,8 +103,18 @@ class Post extends PureComponent {
           </div>
         </div>
         <div className='post__comments-container'>
-          <Comment />
-          <Comment />
+          {postComments.map((comment, index) => (
+            <Comment key={index}
+                     id={comment.id}
+                     parentId={comment.parentId}
+                     voteScore={comment.voteScore}
+                     author={comment.author}
+                     deleted={comment.deleted}
+                     timestamp={comment.timestamp}
+                     body={comment.body}
+                     parentDeleted={comment.parentDeleted}
+            />
+          ))}
         </div>
       </div>
     );
