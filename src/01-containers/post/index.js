@@ -6,21 +6,18 @@ import CategoryLogo from '../../00-components/categoryLogo';
 import CommentsList from '../../00-components/commentsList';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import {voteComment} from '../../02-actions/comments/commentsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
 import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
 class Post extends PureComponent {
-  votePositive(postId) {
-    this.votePost(postId, VOTE_POSITIVE);
-  }
-
-  voteNegative(postId) {
-    this.votePost(postId, VOTE_NEGATIVE);
-  }
-
   votePost(postId, vote) {
     this.props.votePost(postId, vote);
+  }
+
+  voteComment(vote, commentId) {
+    this.props.voteComment(commentId, vote);
   }
 
   editPost(postId) {
@@ -90,13 +87,13 @@ class Post extends PureComponent {
               <i className='fa fa-thumbs-o-up post__post-up-hand'
                  title='Vote positive'
                  onClick={() => {
-                   this.votePositive(postId)
+                   this.votePost(postId, VOTE_POSITIVE)
                  }}
               />
               <i className='fa fa-thumbs-o-down post__post-down-hand'
                  title='Vote negative'
                  onClick={() => {
-                   this.voteNegative(postId)
+                   this.votePost(postId, VOTE_NEGATIVE)
                  }}
               />
             </div>
@@ -104,6 +101,8 @@ class Post extends PureComponent {
         </div>
         <CommentsList className='post__comments-container'
                       comments={postComments}
+                      votePositive={this.voteComment.bind(this, VOTE_POSITIVE)}
+                      voteNegative={this.voteComment.bind(this, VOTE_NEGATIVE)}
         />
       </div>
     );
@@ -123,6 +122,7 @@ const mapDispatchToProps = (dispatch) => {
     showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
     editPost: (post) => dispatch(editPost(post)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
+    voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
     deletePost: (postId) => dispatch(deletePost(postId))
   }
