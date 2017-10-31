@@ -1,0 +1,30 @@
+.category {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category__image {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+}
+
+.category__title {
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.category__title_color_react {
+  color: #61DAFB;
+}
+
+.category__title_color_redux {
+  color: #764ABC;
+}
+
+.category__title_color_udacity {
+  color: #02B2E3;
+}

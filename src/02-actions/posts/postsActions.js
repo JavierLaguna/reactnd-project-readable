@@ -1,5 +1,6 @@
 import * as types from '../../constants/posts/posts';
 import * as PostsService from '../../03-service/posts';
+import * as CommentsActions from '../comments/commentsActions';
 
 // ------------------------------ ACTIONS  ------------------------------
 
@@ -33,11 +34,14 @@ function deletePostAction(postId) {
 
 // ------------------------------ ASYNC ACTIONS  ------------------------------
 
-export function getAllCategories() {
+export function getAllPosts() {
   return dispatch => {
     PostsService.getAllPosts((posts) => {
       dispatch(setAllPostAction(posts))
-    })
+      posts.map((post) => {
+        dispatch(CommentsActions.getCommentsByPost(post.id));
+      });
+    });
   }
 }
 
@@ -45,7 +49,7 @@ export function votePost(postId, vote) {
   return dispatch => {
     PostsService.votePost(postId, vote, (data) => {
       dispatch(setPostAction(data))
-    })
+    });
   }
 }
 
@@ -53,7 +57,7 @@ export function addPost(newPost) {
   return dispatch => {
     PostsService.addPost(newPost, (data) => {
       dispatch(addPostAction(newPost))
-    })
+    });
   }
 }
 
@@ -61,7 +65,7 @@ export function deletePost(postId) {
   return dispatch => {
     PostsService.deletePost(postId, (data) => {
       dispatch(deletePostAction(postId))
-    })
+    });
   }
 }
 
@@ -69,7 +73,7 @@ export function editPost(post) {
   return dispatch => {
     PostsService.editPost(post, (data) => {
       dispatch(setPostAction(data))
-    })
+    });
   }
 }
 

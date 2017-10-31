@@ -1,12 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
+import {Link} from 'react-router-dom';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import DropdownOption from '../dropdownMenu/DropdownOption';
 import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
-import reactLogo from '../../assets/images/react-logo.png';
-import reduxLogo from '../../assets/images/redux-logo.png';
-import udacityLogo from '../../assets/images/udacity-logo.png';
+import CategoryLogo from '../categoryLogo';
+import {convertDate} from '../../utils/dates';
 import './postCard.css';
 
 export default class PostCard extends PureComponent {
@@ -47,15 +47,6 @@ export default class PostCard extends PureComponent {
 
   state = {};
 
-  convertDate(inputFormat) {
-    function pad(s) {
-      return (s < 10) ? '0' + s : s;
-    }
-
-    const d = new Date(inputFormat);
-    return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
-  }
-
   render() {
     const {
       id,
@@ -71,16 +62,12 @@ export default class PostCard extends PureComponent {
       deletePost,
       editPost
     } = this.props;
-    const formattedDate = this.convertDate(timestamp);
-    const logos = {
-      react: reactLogo,
-      redux: reduxLogo,
-      udacity: udacityLogo
-    };
+    const formattedDate = convertDate(timestamp);
+
     return (
       <div className='post-card-container'>
         <div className='post-card-header'>
-          <span className='post-card-header__title'>{title}</span>
+            <Link to={`/post/${id}`} className='post-card-header__title'>{title}</Link>
           <div className='post-card-header__options'>
             <DropdownMenu title='' iconClass='fa fa-cog'>
               <DropdownOption title="Edit post"
@@ -100,11 +87,7 @@ export default class PostCard extends PureComponent {
           </div>
         </div>
         <div className='post-card-subheader'>
-          <img className='post-card-subheader__image'
-               alt={`${category}-logo`}
-               src={logos[category]}
-          />
-          <span className={`post-card-subheader__title post-card-subheader__title_color_${category}`}>{category}</span>
+          <CategoryLogo category={category}/>
         </div>
         <div className='post-card-body'>
           <div className='post-card-text-content'>

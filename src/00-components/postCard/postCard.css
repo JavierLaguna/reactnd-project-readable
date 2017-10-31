@@ -18,16 +18,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   color: #ffffff;
-}
-
-.post-card-header:hover {
-  color: #009AF8;
 }
 
 .post-card-header__title {
   font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.post-card-header__title:hover {
+  color: #009AF8;
 }
 
 .post-card-header__options {
@@ -45,29 +46,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.post-card-subheader__image {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
-}
-
-.post-card-subheader__title {
-  text-transform: capitalize;
-  font-size: 16px;
-}
-
-.post-card-subheader__title_color_react {
-  color: #61DAFB;
-}
-
-.post-card-subheader__title_color_redux {
-  color: #764ABC;
-}
-
-.post-card-subheader__title_color_udacity {
-  color: #02B2E3;
 }
 
 .post-card-body {
@@ -191,5 +169,6 @@
 }
 
 .post-card-footer-content__right {
+  cursor: default;
   display: flex;
 }

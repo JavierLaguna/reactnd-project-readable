@@ -3,17 +3,12 @@ import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
-import {addPost, getAllCategories, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
+import {addPost, votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import {CREATE_POST_MODAL, EDIT_POST_MODAL} from '../../constants/app/modal';
 import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import './index.css';
 
 class PostsList extends PureComponent {
-
-  componentWillMount() {
-    this.props.getAllCategories();
-  }
-
   openNewPostModal() {
     const containerProps = {
       saveChanges: this.addNewPost.bind(this),
@@ -65,9 +60,9 @@ class PostsList extends PureComponent {
     this.props.showModalAction(EDIT_POST_MODAL, containerProps);
   }
 
-
   render() {
-    const {postsList} = this.props;
+    const {postsList, comments} = this.props;
+
     return (
       <div className='posts-list-container'>
         <div className='posts-list'>
@@ -84,6 +79,7 @@ class PostsList extends PureComponent {
                       voteNegative={this.voteNegative.bind(this)}
                       deletePost={this.deletePost.bind(this)}
                       editPost={this.editPost.bind(this)}
+                      numberOfComments={comments[post.id] ? comments[post.id].length : 0}
             />
           )}
           <NewPostCard onClick={this.openNewPostModal.bind(this)}/>
@@ -93,10 +89,11 @@ class PostsList extends PureComponent {
   }
 }
 
-const mapStateToProps = ({posts, categories}) => {
+const mapStateToProps = ({posts, categories, comments}) => {
   return {
     postsList: posts.postsList.filter((post) => !post.deleted),
-    categories: categories.categoriesList
+    categories: categories.categoriesList,
+    comments: comments.commentsList
   };
 };
 
@@ -107,7 +104,6 @@ const mapDispatchToProps = (dispatch) => {
     editPost: (post) => dispatch(editPost(post)),
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
-    getAllCategories: () => dispatch(getAllCategories()),
     deletePost: (postId) => dispatch(deletePost(postId))
   }
 };
