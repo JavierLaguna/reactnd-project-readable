@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ClassNames from 'classnames';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
 import CategoryLogo from '../../00-components/categoryLogo';
+import Comment from '../../00-components/comment';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
@@ -40,6 +41,11 @@ class Post extends PureComponent {
     this.props.showModalAction(EDIT_POST_MODAL, containerProps);
   }
 
+  deletePost(postId) {
+    debugger //TODO GO BACK
+    // this.props.deletePost(postId);
+  }
+
   render() {
     const {postsList, comments, match} = this.props;
     const {postId} = match.params;
@@ -67,7 +73,7 @@ class Post extends PureComponent {
               <span className='post__body-option' onClick={this.editPost.bind(this, postId)}>
                 <i className='fa fa-edit'/>Edit
               </span>
-              <span className='post__body-option'>
+              <span className='post__body-option' onClick={this.deletePost.bind(this, postId)}>
                 <i className='fa fa-trash'/>Delete
               </span>
             </div>
@@ -95,6 +101,10 @@ class Post extends PureComponent {
               />
             </div>
           </div>
+        </div>
+        <div className='post__comments-container'>
+          <Comment />
+          <Comment />
         </div>
       </div>
     );

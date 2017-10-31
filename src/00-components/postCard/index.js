@@ -6,9 +6,6 @@ import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import DropdownOption from '../dropdownMenu/DropdownOption';
 import DropdownSeparator from '../dropdownMenu/DropdownSeparator';
 import CategoryLogo from '../categoryLogo';
-import reactLogo from '../../assets/images/react-logo.png';
-import reduxLogo from '../../assets/images/redux-logo.png';
-import udacityLogo from '../../assets/images/udacity-logo.png';
 import {convertDate} from '../../utils/dates';
 import './postCard.css';
 
@@ -66,11 +63,7 @@ export default class PostCard extends PureComponent {
       editPost
     } = this.props;
     const formattedDate = convertDate(timestamp);
-    const logos = {
-      react: reactLogo,
-      redux: reduxLogo,
-      udacity: udacityLogo
-    };
+
     return (
       <div className='post-card-container'>
         <div className='post-card-header'>
