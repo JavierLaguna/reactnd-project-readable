@@ -1,0 +1,28 @@
+.comment-editable {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field__label {
+  margin-bottom: 8px;
+}
+
+.comment-editable-footer{
+  margin: 20px 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.field__text-area{
+  resize: none;
+  height: 100px;
+}
