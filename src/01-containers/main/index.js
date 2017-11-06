@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import Filters from '../filters';
 import PostsList from '../postsList';
 import {orderBy} from 'lodash';
 import './main.css';
@@ -23,6 +24,7 @@ class Main extends PureComponent {
 
     return (
       <div className='main-container'>
+        <Filters />
         <PostsList postsList={orderedPosts}/>
       </div>
     );
