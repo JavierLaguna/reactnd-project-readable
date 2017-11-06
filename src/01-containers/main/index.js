@@ -19,12 +19,12 @@ class Main extends PureComponent {
   state = {};
 
   render() {
-    const {postsList} = this.props;
+    const {postsList, history} = this.props;
     let orderedPosts = orderBy(postsList, ['voteScore'], ['desc']);
 
     return (
       <div className='main-container'>
-        <Filters />
+        <Filters history={history}/>
         <PostsList postsList={orderedPosts}/>
       </div>
     );
