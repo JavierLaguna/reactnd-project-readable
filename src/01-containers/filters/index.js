@@ -1,19 +1,22 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import ClassNames from 'classnames';
 import CategoryLogo from '../../00-components/categoryLogo';
 import './filters.css';
 
-class Filters extends PureComponent {
+class Filters extends Component {
 
   static propTypes = {
     categories: PropTypes.array.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
   };
 
   static defaultProps = {
     categories: [],
-    history: {}
+    history: {},
+    match: {}
   };
 
   state = {};
@@ -23,15 +26,19 @@ class Filters extends PureComponent {
   }
 
   render() {
-    const {categories} = this.props;
+    const {categories, match} = this.props;
+    const selectedCategory = match.params.category || '';
 
     return (
       <div className='filters-container'>
         <div className='filters-container__categories'>
           {categories.map((category, index) => (
             <button key={index}
-                    className='filters-container__categories-button'
                     onClick={this.goCategory.bind(this, category.path)}
+                    className={ClassNames({
+                      'filters-container__categories-button': true,
+                      'filters-container__categories-button_active': selectedCategory=== category.path,
+                    })}
             >
               <CategoryLogo category={category.name}/>
             </button>
