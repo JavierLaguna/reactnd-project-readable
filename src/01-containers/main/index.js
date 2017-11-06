@@ -20,12 +20,18 @@ class Main extends PureComponent {
 
   render() {
     const {postsList, history, match} = this.props;
-    let orderedPosts = orderBy(postsList, ['voteScore'], ['desc']);
+    const categoryFilter = match.params.category || null;
+    let posts = [...postsList];
+
+    if (categoryFilter) {
+      posts= posts.filter((post)=>(post.category === categoryFilter));
+    }
+    posts = orderBy(posts, ['voteScore'], ['desc']);
 
     return (
       <div className='main-container'>
         <Filters history={history} match={match}/>
-        <PostsList postsList={orderedPosts}/>
+        <PostsList postsList={posts}/>
       </div>
     );
   }
