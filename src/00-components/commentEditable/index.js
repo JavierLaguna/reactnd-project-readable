@@ -1,28 +1,40 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty as _isEmpty} from 'lodash';
 import './commentEditable.css';
 
 export default class CommentEditable extends PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
-    body: PropTypes.string,
-    author: PropTypes.string,
+    comment: PropTypes.object,
     saveChanges: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     className: '',
-    body: '',
-    author: '',
+    comment: {},
     saveChanges: () => {
     }
   };
 
   state = {
     author: '',
-    body: ''
+    body: '',
+    textButton: 'Add Comment',
+    disabledAuthor: false
   };
+
+  componentWillMount() {
+    if (!_isEmpty(this.props.comment)) {
+      this.setState({
+        author: this.props.comment.author,
+        body: this.props.comment.body,
+        textButton: 'Save Changes',
+        disabledAuthor: true
+      });
+    }
+  }
 
   saveChanges(event) {
     event.preventDefault();
@@ -48,7 +60,7 @@ export default class CommentEditable extends PureComponent {
   }
 
   render() {
-    const {body, author} = this.state;
+    const {body, author, textButton, disabledAuthor} = this.state;
     const {className} = this.props;
 
     return (
@@ -61,6 +73,7 @@ export default class CommentEditable extends PureComponent {
                    value={author}
                    onChange={this.onInputChange.bind(this)}
                    required
+                   disabled={disabledAuthor}
             />
           </div>
           <div className='field'>
@@ -73,7 +86,7 @@ export default class CommentEditable extends PureComponent {
             />
           </div>
           <div className='comment-editable-footer'>
-            <button className='comment-editable-footer__button' type='submit'>Add Comment</button>
+            <button className='comment-editable-footer__button' type='submit'>{textButton}</button>
           </div>
         </form>
       </div>

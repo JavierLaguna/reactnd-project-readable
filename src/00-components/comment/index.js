@@ -17,7 +17,8 @@ export default class Comment extends PureComponent {
     deleted: PropTypes.bool.isRequired,
     parentDeleted: PropTypes.bool.isRequired,
     votePositive: PropTypes.func.isRequired,
-    voteNegative: PropTypes.func.isRequired
+    voteNegative: PropTypes.func.isRequired,
+    editComment: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -32,27 +33,15 @@ export default class Comment extends PureComponent {
     votePositive: () => {
     },
     voteNegative: () => {
+    },
+    editComment: () => {
     }
   };
 
   state = {};
 
-  editComment(postId) { //TODO
-    // let post = this.props.postsList.filter((post) => post.id === postId);
-    // post = post[0];
-    // const containerProps = {
-    //   saveChanges: (editedPost) => {
-    //     editedPost = {
-    //       ...post,
-    //       ...editedPost
-    //     };
-    //     this.props.editPost(editedPost);
-    //     this.props.hideModalAction();
-    //   },
-    //   categories: this.props.categories,
-    //   post
-    // };
-    // this.props.showModalAction(EDIT_POST_MODAL, containerProps);
+  editComment(commentId) {
+    this.props.editComment(commentId);
   }
 
   deleteComment(postId) {//TODO

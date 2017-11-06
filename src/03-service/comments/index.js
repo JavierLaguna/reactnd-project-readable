@@ -12,3 +12,11 @@ export function voteComment(commentId, vote, callback, error) {
 export function addComment(comment, callback, error) {
   executeServiceCallWithData('/comments', comment, callback, error);
 }
+
+export function editComment(comment, callback, error) {
+  const data = {
+    body: comment.body,
+    timestamp: comment.timestamp
+  };
+  executeServiceCallWithData(`/comments/${comment.id}`, data, callback, error, 'PUT');
+}

@@ -7,7 +7,7 @@ import CommentsList from '../../00-components/commentsList';
 import CommentEditable from '../../00-components/commentEditable';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
-import {voteComment, addComment} from '../../02-actions/comments/commentsActions';
+import {voteComment, addComment, editComment} from '../../02-actions/comments/commentsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
 import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import {COMMENT_DEFAULT_VALUES} from '../../constants/comments/comments';
@@ -16,10 +16,6 @@ import './index.css';
 class Post extends PureComponent {
   votePost(postId, vote) {
     this.props.votePost(postId, vote);
-  }
-
-  voteComment(vote, commentId) {
-    this.props.voteComment(commentId, vote);
   }
 
   editPost(postId) {
@@ -40,6 +36,11 @@ class Post extends PureComponent {
     this.props.showModalAction(EDIT_POST_MODAL, containerProps);
   }
 
+  deletePost(postId) {
+    debugger //TODO GO BACK
+    // this.props.deletePost(postId);
+  }
+
   newComment(postId, comment) {
     comment.id = COMMENT_DEFAULT_VALUES.id();
     comment.timestamp = COMMENT_DEFAULT_VALUES.timestamp();
@@ -47,9 +48,13 @@ class Post extends PureComponent {
     this.props.addComment(comment);
   }
 
-  deletePost(postId) {
-    debugger //TODO GO BACK
-    // this.props.deletePost(postId);
+  voteComment(vote, commentId) {
+    this.props.voteComment(commentId, vote);
+  }
+
+  editComment(comment) {
+    comment.timestamp = COMMENT_DEFAULT_VALUES.timestamp();
+    this.props.editComment(comment);
   }
 
   render() {
@@ -115,6 +120,7 @@ class Post extends PureComponent {
                       comments={postComments}
                       votePositive={this.voteComment.bind(this, VOTE_POSITIVE)}
                       voteNegative={this.voteComment.bind(this, VOTE_NEGATIVE)}
+                      editComment={this.editComment.bind(this)}
         />
       </div>
     );
@@ -137,7 +143,8 @@ const mapDispatchToProps = (dispatch) => {
     voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
     deletePost: (postId) => dispatch(deletePost(postId)),
-    addComment: (comment) => dispatch(addComment(comment))
+    addComment: (comment) => dispatch(addComment(comment)),
+    editComment: (comment) => dispatch(editComment(comment))
   }
 };
 

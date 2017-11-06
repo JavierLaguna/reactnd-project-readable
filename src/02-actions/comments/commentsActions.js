@@ -45,4 +45,12 @@ export function addComment(comment) {
   }
 }
 
+export function editComment(comment) {
+  return dispatch => {
+    CommentsService.editComment(comment, (editedComment) => {
+      dispatch(setCommentAction(editedComment))
+    });
+  }
+}
+
 // ------------------------------ FUNCTIONS  ------------------------------
