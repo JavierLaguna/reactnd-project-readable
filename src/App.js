@@ -6,7 +6,7 @@ import PostsList from './01-containers/postsList';
 import Post from './01-containers/post';
 import {getAllCategories} from './02-actions/categories/categoriesActions';
 import {getAllPosts} from './02-actions/posts/postsActions';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 
 class App extends PureComponent {
   componentDidMount() {
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 
 
 
