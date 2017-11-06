@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import PostCard from '../../00-components/postCard';
 import NewPostCard from '../../00-components/newPostCard';
@@ -9,6 +10,37 @@ import {POST_DEFAULT_VALUES, VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants
 import './index.css';
 
 class PostsList extends PureComponent {
+
+  static propTypes = {
+    postsList: PropTypes.array.isRequired,
+    comments: PropTypes.object.isRequired,
+    showModalAction: PropTypes.func.isRequired,
+    addPost: PropTypes.func.isRequired,
+    editPost: PropTypes.func.isRequired,
+    votePost: PropTypes.func.isRequired,
+    hideModalAction: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    postsList: [],
+    comments: {},
+    showModalAction: () => {
+    },
+    addPost: () => {
+    },
+    editPost: () => {
+    },
+    votePost: () => {
+    },
+    hideModalAction: () => {
+    },
+    deletePost: () => {
+    }
+  };
+
+  state = {};
+
   openNewPostModal() {
     const containerProps = {
       saveChanges: this.addNewPost.bind(this),
@@ -89,9 +121,8 @@ class PostsList extends PureComponent {
   }
 }
 
-const mapStateToProps = ({posts, categories, comments}) => {
+const mapStateToProps = ({categories, comments}) => {
   return {
-    postsList: posts.postsList.filter((post) => !post.deleted),
     categories: categories.categoriesList,
     comments: comments.commentsList
   };

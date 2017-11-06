@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Header from './01-containers/header';
 import Modal from './01-containers/modal';
-import PostsList from './01-containers/postsList';
-import Post from './01-containers/post';
+import MainContainer from './01-containers/main';
+import PostContainer from './01-containers/post';
 import {getAllCategories} from './02-actions/categories/categoriesActions';
 import {getAllPosts} from './02-actions/posts/postsActions';
 import {Route, withRouter} from 'react-router-dom';
@@ -19,8 +19,8 @@ class App extends PureComponent {
       <div className="app">
         <Header/>
         <Modal/>
-        <Route exact path='/' component={PostsList}/>
-        <Route path='/post/:postId' component={Post}/>
+        <Route exact path='/' component={MainContainer}/>
+        <Route path='/post/:postId' component={PostContainer}/>
       </div>
     );
   }
