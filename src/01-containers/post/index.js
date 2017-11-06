@@ -11,6 +11,7 @@ import {voteComment, addComment, editComment, deleteComment} from '../../02-acti
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
 import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import {COMMENT_DEFAULT_VALUES} from '../../constants/comments/comments';
+import {orderBy} from 'lodash';
 import './index.css';
 
 class Post extends PureComponent {
@@ -67,7 +68,7 @@ class Post extends PureComponent {
     const post = postsList.length !== 0 ? postsList.filter((post) => {
       return postId === post.id;
     })[0] : {};
-    const postComments = comments[postId] ? comments[postId].filter((comment) => (!comment.deleted)) : [];
+    const postComments = comments[postId] ? orderBy(comments[postId], ['voteScore'], ['asc']).filter((comment) => (!comment.deleted)) : [];
 
     if (!post) {
       return (
