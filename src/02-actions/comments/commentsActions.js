@@ -22,6 +22,7 @@ function setCommentAction(comment) {
 export function getCommentsByPost(postId) {
   return dispatch => {
     CommentsService.getCommentsByPost(postId, (comments) => {
+      // eslint-disable-next-line
       comments.map((comment) => {
         dispatch(addCommentAction(comment))
       });

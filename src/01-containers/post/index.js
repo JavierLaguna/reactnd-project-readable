@@ -37,8 +37,8 @@ class Post extends PureComponent {
   }
 
   deletePost(postId) {
-    debugger //TODO GO BACK
-    // this.props.deletePost(postId);
+    this.props.deletePost(postId);
+    this.props.history.push('/');
   }
 
   newComment(postId, comment) {
@@ -67,7 +67,13 @@ class Post extends PureComponent {
     const post = postsList.length !== 0 ? postsList.filter((post) => {
       return postId === post.id;
     })[0] : {};
-    const postComments = comments[postId] ? comments[postId].filter((comment)=>(!comment.deleted)) : [];
+    const postComments = comments[postId] ? comments[postId].filter((comment) => (!comment.deleted)) : [];
+
+    if (!post) {
+      return (
+        <div>Post not found.</div>
+      )
+    }
 
     return (
       <div className='post'>
