@@ -8,3 +8,7 @@ export function voteComment(commentId, vote, callback, error) {
   const data = {option: vote};
   executeServiceCallWithData(`/comments/${commentId}`, data, callback, error);
 }
+
+export function addComment(comment, callback, error) {
+  executeServiceCallWithData('/comments', comment, callback, error);
+}

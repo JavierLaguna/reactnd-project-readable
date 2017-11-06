@@ -70,7 +70,7 @@ export default class Post extends PureComponent {
 
     return (
       <div className='post-container'>
-        <form className="execute-order-form" onSubmit={this.saveChanges.bind(this)} autoComplete="on">
+        <form onSubmit={this.saveChanges.bind(this)} autoComplete="on">
           <div className='field'>
             <label className='field__label'>Title</label>
             <input className='field__input'
