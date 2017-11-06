@@ -22,6 +22,7 @@ function setCommentAction(comment) {
 export function getCommentsByPost(postId) {
   return dispatch => {
     CommentsService.getCommentsByPost(postId, (comments) => {
+      // eslint-disable-next-line
       comments.map((comment) => {
         dispatch(addCommentAction(comment))
       });
@@ -49,6 +50,14 @@ export function editComment(comment) {
   return dispatch => {
     CommentsService.editComment(comment, (editedComment) => {
       dispatch(setCommentAction(editedComment))
+    });
+  }
+}
+
+export function deleteComment(comment) {
+  return dispatch => {
+    CommentsService.deleteComment(comment, (deletedComment) => {
+      dispatch(setCommentAction(deletedComment))
     });
   }
 }

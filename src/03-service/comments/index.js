@@ -20,3 +20,7 @@ export function editComment(comment, callback, error) {
   };
   executeServiceCallWithData(`/comments/${comment.id}`, data, callback, error, 'PUT');
 }
+
+export function deleteComment(comment, callback, error) {
+  executeServiceCallWithData(`/comments/${comment.id}`, comment, callback, error, 'DELETE');
+}

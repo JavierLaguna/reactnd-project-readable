@@ -37,7 +37,8 @@ function deletePostAction(postId) {
 export function getAllPosts() {
   return dispatch => {
     PostsService.getAllPosts((posts) => {
-      dispatch(setAllPostAction(posts))
+      dispatch(setAllPostAction(posts));
+      // eslint-disable-next-line
       posts.map((post) => {
         dispatch(CommentsActions.getCommentsByPost(post.id));
       });

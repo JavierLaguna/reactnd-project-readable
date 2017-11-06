@@ -10,7 +10,8 @@ export default class CommentsList extends Component {
     comments: PropTypes.array.isRequired,
     votePositive: PropTypes.func.isRequired,
     voteNegative: PropTypes.func.isRequired,
-    editComment: PropTypes.func.isRequired
+    editComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -21,6 +22,8 @@ export default class CommentsList extends Component {
     voteNegative: () => {
     },
     editComment: () => {
+    },
+    deleteComment: () => {
     }
   };
 
@@ -30,6 +33,11 @@ export default class CommentsList extends Component {
 
   editComment(commentId) {
     this.setState({commentEditable: commentId});
+  }
+
+  deleteComment(commentId) {
+    const comment = this.props.comments.filter((comment) => (comment.id === commentId))[0];
+    this.props.deleteComment(comment);
   }
 
   saveComment(comment, commentChanges) {
@@ -69,6 +77,7 @@ export default class CommentsList extends Component {
                      voteNegative={voteNegative}
                      votePositive={votePositive}
                      editComment={this.editComment.bind(this)}
+                     deleteComment={this.deleteComment.bind(this)}
             />
           )
         })}
