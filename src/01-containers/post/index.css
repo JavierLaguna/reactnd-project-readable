@@ -94,6 +94,13 @@
   transform: scale(1.3);
 }
 
+.post__comments-new-comment {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .post__comments-container {
   margin-top: 30px;
   width: 100%;

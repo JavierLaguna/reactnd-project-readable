@@ -5,12 +5,14 @@ import './commentEditable.css';
 export default class CommentEditable extends PureComponent {
 
   static propTypes = {
+    className: PropTypes.string,
     body: PropTypes.string,
     author: PropTypes.string,
     saveChanges: PropTypes.func.isRequired
   };
 
   static defaultProps = {
+    className: '',
     body: '',
     author: '',
     saveChanges: () => {
@@ -42,13 +44,11 @@ export default class CommentEditable extends PureComponent {
   }
 
   render() {
-    const {
-      body,
-      author
-    } = this.state;
+    const {body, author} = this.state;
+    const {className} = this.props;
 
     return (
-      <div className='comment-editable'>
+      <div className={`${className} comment-editable`}>
         <form onSubmit={this.saveChanges.bind(this)} autoComplete="on">
           <div className='field'>
             <label className='field__label'>Author</label>

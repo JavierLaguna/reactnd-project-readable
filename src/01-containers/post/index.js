@@ -4,6 +4,7 @@ import ClassNames from 'classnames';
 import {showModalAction, hideModalAction} from '../../02-actions/app/modalActions';
 import CategoryLogo from '../../00-components/categoryLogo';
 import CommentsList from '../../00-components/commentsList';
+import CommentEditable from '../../00-components/commentEditable';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
 import {voteComment} from '../../02-actions/comments/commentsActions';
@@ -99,6 +100,7 @@ class Post extends PureComponent {
             </div>
           </div>
         </div>
+        <CommentEditable className='post__comments-new-comment' />
         <CommentsList className='post__comments-container'
                       comments={postComments}
                       votePositive={this.voteComment.bind(this, VOTE_POSITIVE)}
