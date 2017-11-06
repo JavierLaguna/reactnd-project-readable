@@ -53,4 +53,12 @@ export function editComment(comment) {
   }
 }
 
+export function deleteComment(comment) {
+  return dispatch => {
+    CommentsService.deleteComment(comment, (deletedComment) => {
+      dispatch(setCommentAction(deletedComment))
+    });
+  }
+}
+
 // ------------------------------ FUNCTIONS  ------------------------------

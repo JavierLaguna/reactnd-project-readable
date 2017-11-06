@@ -18,7 +18,8 @@ export default class Comment extends PureComponent {
     parentDeleted: PropTypes.bool.isRequired,
     votePositive: PropTypes.func.isRequired,
     voteNegative: PropTypes.func.isRequired,
-    editComment: PropTypes.func.isRequired
+    editComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -35,6 +36,8 @@ export default class Comment extends PureComponent {
     voteNegative: () => {
     },
     editComment: () => {
+    },
+    deleteComment: () => {
     }
   };
 
@@ -44,9 +47,8 @@ export default class Comment extends PureComponent {
     this.props.editComment(commentId);
   }
 
-  deleteComment(postId) {//TODO
-    debugger //TODO GO BACK
-    // this.props.deleteComment(postId);
+  deleteComment(commentId) {
+    this.props.deleteComment(commentId);
   }
 
   votePositive() {

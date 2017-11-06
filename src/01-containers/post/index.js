@@ -7,7 +7,7 @@ import CommentsList from '../../00-components/commentsList';
 import CommentEditable from '../../00-components/commentEditable';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
-import {voteComment, addComment, editComment} from '../../02-actions/comments/commentsActions';
+import {voteComment, addComment, editComment, deleteComment} from '../../02-actions/comments/commentsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
 import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
 import {COMMENT_DEFAULT_VALUES} from '../../constants/comments/comments';
@@ -57,13 +57,17 @@ class Post extends PureComponent {
     this.props.editComment(comment);
   }
 
+  deleteComment(comment) {
+    this.props.deleteComment(comment);
+  }
+
   render() {
     const {postsList, comments, match} = this.props;
     const {postId} = match.params;
     const post = postsList.length !== 0 ? postsList.filter((post) => {
       return postId === post.id;
     })[0] : {};
-    const postComments = comments[postId] || [];
+    const postComments = comments[postId] ? comments[postId].filter((comment)=>(!comment.deleted)) : [];
 
     return (
       <div className='post'>
@@ -121,6 +125,7 @@ class Post extends PureComponent {
                       votePositive={this.voteComment.bind(this, VOTE_POSITIVE)}
                       voteNegative={this.voteComment.bind(this, VOTE_NEGATIVE)}
                       editComment={this.editComment.bind(this)}
+                      deleteComment={this.deleteComment.bind(this)}
         />
       </div>
     );
@@ -144,7 +149,8 @@ const mapDispatchToProps = (dispatch) => {
     hideModalAction: () => dispatch(hideModalAction()),
     deletePost: (postId) => dispatch(deletePost(postId)),
     addComment: (comment) => dispatch(addComment(comment)),
-    editComment: (comment) => dispatch(editComment(comment))
+    editComment: (comment) => dispatch(editComment(comment)),
+    deleteComment: (comment) => dispatch(deleteComment(comment))
   }
 };
 
