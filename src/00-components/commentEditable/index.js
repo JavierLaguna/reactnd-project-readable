@@ -31,6 +31,10 @@ export default class CommentEditable extends PureComponent {
       author,
       body
     });
+    this.setState({
+      author: '',
+      body: ''
+    });
   }
 
   onChangeField(value, field) {

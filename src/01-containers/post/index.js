@@ -7,9 +7,10 @@ import CommentsList from '../../00-components/commentsList';
 import CommentEditable from '../../00-components/commentEditable';
 import {convertDate} from '../../utils/dates';
 import {votePost, deletePost, editPost} from '../../02-actions/posts/postsActions';
-import {voteComment} from '../../02-actions/comments/commentsActions';
+import {voteComment, addComment} from '../../02-actions/comments/commentsActions';
 import {EDIT_POST_MODAL} from '../../constants/app/modal';
 import {VOTE_NEGATIVE, VOTE_POSITIVE} from '../../constants/posts/posts';
+import {COMMENT_DEFAULT_VALUES} from '../../constants/comments/comments';
 import './index.css';
 
 class Post extends PureComponent {
@@ -37,6 +38,13 @@ class Post extends PureComponent {
       post
     };
     this.props.showModalAction(EDIT_POST_MODAL, containerProps);
+  }
+
+  newComment(postId, comment) {
+    comment.id = COMMENT_DEFAULT_VALUES.id();
+    comment.timestamp = COMMENT_DEFAULT_VALUES.timestamp();
+    comment.parentId = postId;
+    this.props.addComment(comment);
   }
 
   deletePost(postId) {
@@ -100,7 +108,9 @@ class Post extends PureComponent {
             </div>
           </div>
         </div>
-        <CommentEditable className='post__comments-new-comment' />
+        <CommentEditable className='post__comments-new-comment'
+                         saveChanges={this.newComment.bind(this, postId)}
+        />
         <CommentsList className='post__comments-container'
                       comments={postComments}
                       votePositive={this.voteComment.bind(this, VOTE_POSITIVE)}
@@ -126,7 +136,8 @@ const mapDispatchToProps = (dispatch) => {
     votePost: (postId, vote) => dispatch(votePost(postId, vote)),
     voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
     hideModalAction: () => dispatch(hideModalAction()),
-    deletePost: (postId) => dispatch(deletePost(postId))
+    deletePost: (postId) => dispatch(deletePost(postId)),
+    addComment: (comment) => dispatch(addComment(comment))
   }
 };
 

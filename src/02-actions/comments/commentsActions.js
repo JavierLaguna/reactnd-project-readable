@@ -22,7 +22,7 @@ function setCommentAction(comment) {
 export function getCommentsByPost(postId) {
   return dispatch => {
     CommentsService.getCommentsByPost(postId, (comments) => {
-      comments.map((comment)=>{
+      comments.map((comment) => {
         dispatch(addCommentAction(comment))
       });
     });
@@ -33,6 +33,14 @@ export function voteComment(commentId, vote) {
   return dispatch => {
     CommentsService.voteComment(commentId, vote, (comment) => {
       dispatch(setCommentAction(comment))
+    });
+  }
+}
+
+export function addComment(comment) {
+  return dispatch => {
+    CommentsService.addComment(comment, (newComment) => {
+      dispatch(addCommentAction(newComment))
     });
   }
 }
