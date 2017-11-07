@@ -1,6 +1,10 @@
 export default {
   modal: {
     modalType: null,
-    containerProps: {}
+    containerProps: {},
+    postOrder: {
+      field: 'voteScore',
+      type: 'desc'
+    }
   }
 }

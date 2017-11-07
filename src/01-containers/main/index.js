@@ -44,4 +44,3 @@ const mapStateToProps = ({posts}) => {
 };
 
 export default connect(mapStateToProps)(Main)
-

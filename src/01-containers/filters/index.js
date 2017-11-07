@@ -26,7 +26,7 @@ class Filters extends PureComponent {
     if (selectedCategory === category) {
       this.props.history.push('/');
     } else {
-      this.props.history.push(`/category/${category}`);
+      this.props.history.push(`/${category}`);
     }
   }
 
