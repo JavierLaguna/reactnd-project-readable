@@ -58,7 +58,8 @@ export default class CommentsList extends Component {
         {comments.map((comment, index) => {
           if (commentEditable === comment.id) {
             return (
-              <CommentEditable className=''
+              <CommentEditable key={index}
+                               className=''
                                comment={comment}
                                saveChanges={this.saveComment.bind(this, comment)}
               />
