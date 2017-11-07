@@ -20,8 +20,8 @@ class App extends PureComponent {
         <Header/>
         <Modal/>
         <Route exact path='/' component={MainContainer}/>
-        <Route path='/category/:category' component={MainContainer}/>
-        <Route path='/post/:postId' component={PostContainer}/>
+        <Route exact path='/:category' component={MainContainer}/>
+        <Route exact path='/:category/:postId' component={PostContainer}/>
       </div>
     );
   }

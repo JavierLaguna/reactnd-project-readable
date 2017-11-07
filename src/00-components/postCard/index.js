@@ -67,7 +67,7 @@ export default class PostCard extends PureComponent {
     return (
       <div className='post-card-container'>
         <div className='post-card-header'>
-            <Link to={`/post/${id}`} className='post-card-header__title'>{title}</Link>
+            <Link to={`/${category}/${id}`} className='post-card-header__title'>{title}</Link>
           <div className='post-card-header__options'>
             <DropdownMenu title='' iconClass='fa fa-cog'>
               <DropdownOption title="Edit post"
