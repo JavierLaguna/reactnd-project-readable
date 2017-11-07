@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import ClassNames from 'classnames';
 import CategoryLogo from '../../00-components/categoryLogo';
+import {setPostOrderAction} from '../../02-actions/app/postOrderActions';
 import './filters.css';
 
 class Filters extends PureComponent {
@@ -33,7 +34,10 @@ class Filters extends PureComponent {
   }
 
   changeOrder(event) {
-    debugger
+    const value = event.target.value.split('-');
+    const field = value[0];
+    const type = value[1];
+    this.props.setPostOrderAction(field, type);
   }
 
   render() {
@@ -77,7 +81,7 @@ const mapStateToProps = ({app, categories}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
+    setPostOrderAction: (field, type) => dispatch(setPostOrderAction(field, type)),
   }
 };
 

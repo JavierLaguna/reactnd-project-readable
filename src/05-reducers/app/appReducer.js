@@ -1,5 +1,6 @@
 import appInitialState from '../00-initialState/app/appInitialState';
 import * as modalTypes from '../../constants/app/modal';
+import * as postOrderTypes from '../../constants/app/postOrder';
 
 export default function appReducer(state = appInitialState, action) {
   switch (action.type) {
@@ -17,6 +18,14 @@ export default function appReducer(state = appInitialState, action) {
         modal: {
           modalType: null,
           containerProps: {}
+        }
+      };
+    case postOrderTypes.SET_POST_ORDER :
+      return {
+        ...state,
+        postOrder: {
+          field: action.field,
+          type: action.orderType
         }
       };
     default:
