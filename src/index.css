@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Averia Libre', cursive;
+  background-color: #f6f6f6;
+  font-size: 16px;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+input, textarea {
+  font-family: 'Averia Libre', cursive;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #e2e2e2;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 4px 5px;
+  color: #333;
+  font-size: 14px;
+  min-height: 26px;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  user-select: text;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input:hover, input:focus {
+  border: 1px solid #009AF8;
+}
+
+input:disabled {
+  cursor: default;
+  color: #727272;
+  background-color: #f4f2f2;
+  border: 1px solid #e2e2e2;
+}
+
+textarea:hover, textarea:focus {
+  border: 1px solid #009AF8;
+}
+
+textarea:disabled {
+  cursor: default;
+  color: #727272;
+  background-color: #f4f2f2;
+  border: 1px solid #e2e2e2;
+}
+
+button {
+  font-family: 'Averia Libre', cursive;
+  box-sizing: border-box;
+  border-radius: 0;
+  background-color: #FFFFFF;
+  border: 1px solid #ddd;
+  color: #333;
+  min-height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.33334;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+
+button:disabled {
+  background-color: #FFFFFF !important;
+  border: 1px solid #ddd !important;
+  color: #333 !important;
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+button:hover {
+  background-color: #009AF8;
+  border-color: #009AF8;
+  color: #FFFFFF;
+}
+
+select {
+  font-family: 'Averia Libre', cursive;
+  background: #FFFFFF;
+  border: 1px solid #C5C5C5;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 5px;
+  color: #333;
+  font-size: 14px;
+  min-height: 26px;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  user-select: text;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+select:hover, select:focus {
+  border: 1px solid #009AF8;
+}
+
+select:disabled {
+  cursor: default;
+  color: #727272;
+  background-color: #e4e4e4;
+}

@@ -1,0 +1,19 @@
+.posts-list-container {
+  display: flex;
+  justify-content: center;
+}
+
+.posts-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.post-card-container, .new-post-container {
+  width: 18%;
+  min-width: 260px;
+}

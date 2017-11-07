@@ -1,0 +1,5 @@
+// ACTIONS
+
+export const SET_ALL_CATEGORIES = 'SET_ALL_CATEGORIES';
+
+// OTHERS
