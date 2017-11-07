@@ -9,24 +9,26 @@ import './main.css';
 class Main extends PureComponent {
 
   static propTypes = {
-    postsList: PropTypes.array.isRequired
+    postsList: PropTypes.array.isRequired,
+    postOrder: PropTypes.object.isRequired
   };
 
   static defaultProps = {
-    postsList: []
+    postsList: [],
+    postOrder: {}
   };
 
   state = {};
 
   render() {
-    const {postsList, history, match} = this.props;
+    const {postsList, history, match, postOrder} = this.props;
     const categoryFilter = match.params.category || null;
     let posts = [...postsList];
 
     if (categoryFilter) {
       posts= posts.filter((post)=>(post.category === categoryFilter));
     }
-    posts = orderBy(posts, ['voteScore'], ['desc']);
+    posts = orderBy(posts, [postOrder.field], [postOrder.type]);
 
     return (
       <div className='main-container'>
@@ -37,8 +39,9 @@ class Main extends PureComponent {
   }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({app, posts}) => {
   return {
+    postOrder: app.postOrder,
     postsList: posts.postsList.filter((post) => !post.deleted)
   };
 };

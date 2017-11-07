@@ -10,13 +10,15 @@ class Filters extends PureComponent {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    postOrder: PropTypes.object.isRequired
   };
 
   static defaultProps = {
     categories: [],
     history: {},
-    match: {}
+    match: {},
+    postOrder: {}
   };
 
   state = {};
@@ -30,12 +32,24 @@ class Filters extends PureComponent {
     }
   }
 
+  changeOrder(event) {
+    debugger
+  }
+
   render() {
-    const {categories, match} = this.props;
+    const {categories, match, postOrder} = this.props;
     const selectedCategory = match.params.category || '';
 
     return (
       <div className='filters-container'>
+        <div className='filters-container__order'>
+          <select name='order' value={`${postOrder.field}-${postOrder.type}`} onChange={this.changeOrder.bind(this)}>
+            <option value='voteScore-desc'>Max Score</option>
+            <option value='voteScore-asc'>Min Score</option>
+            <option value='timestamp-desc'>Newest Posts</option>
+            <option value='timestamp-asc'>Oldest Posts</option>
+          </select>
+        </div>
         <div className='filters-container__categories'>
           {categories.map((category, index) => (
             <button key={index}
@@ -54,8 +68,9 @@ class Filters extends PureComponent {
   }
 }
 
-const mapStateToProps = ({categories}) => {
+const mapStateToProps = ({app, categories}) => {
   return {
+    postOrder: app.postOrder,
     categories: categories.categoriesList
   };
 };
