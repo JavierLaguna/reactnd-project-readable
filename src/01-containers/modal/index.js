@@ -1,4 +1,3 @@
-// Components
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import CreatePost from '../../00-components/createPost';
@@ -46,10 +45,4 @@ const mapStateToProps = ({app}) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    hideModalAction: () => dispatch(hideModalAction())
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer)
+export default connect(mapStateToProps, {hideModalAction})(ModalContainer)

@@ -1,4 +1,4 @@
-import * as types from '../../constants/categories/categories';
+import * as types from './actionTypes';
 import * as CategoriesService from '../../03-service/categories';
 
 // ------------------------------ ACTIONS  ------------------------------
