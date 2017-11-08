@@ -1,3 +1,0 @@
-// ACTIONS
-
-export const SET_POST_ORDER = 'SET_POST_ORDER';

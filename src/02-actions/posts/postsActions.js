@@ -1,4 +1,4 @@
-import * as types from '../../constants/posts/posts';
+import * as types from './actionTypes';
 import * as PostsService from '../../03-service/posts';
 import * as CommentsActions from '../comments/commentsActions';
 
