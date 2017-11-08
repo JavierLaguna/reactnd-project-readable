@@ -79,10 +79,4 @@ const mapStateToProps = ({app, categories}) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPostOrderAction: (field, type) => dispatch(setPostOrderAction(field, type)),
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filters)
+export default connect(mapStateToProps, {setPostOrderAction})(Filters)

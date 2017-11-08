@@ -128,15 +128,11 @@ const mapStateToProps = ({categories, comments}) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showModalAction: (modalType, containerProps) => dispatch(showModalAction(modalType, containerProps)),
-    addPost: (newPost) => dispatch(addPost(newPost)),
-    editPost: (post) => dispatch(editPost(post)),
-    votePost: (postId, vote) => dispatch(votePost(postId, vote)),
-    hideModalAction: () => dispatch(hideModalAction()),
-    deletePost: (postId) => dispatch(deletePost(postId))
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostsList)
+export default connect(mapStateToProps, {
+  showModalAction,
+  addPost,
+  editPost,
+  votePost,
+  hideModalAction,
+  deletePost
+})(PostsList)
