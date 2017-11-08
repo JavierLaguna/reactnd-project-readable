@@ -1,10 +1,9 @@
 import appInitialState from '../00-initialState/app/appInitialState';
-import * as modalTypes from '../../constants/app/modal';
-import * as postOrderTypes from '../../constants/app/postOrder';
+import * as types from '../../02-actions/app/actionTypes';
 
 export default function appReducer(state = appInitialState, action) {
   switch (action.type) {
-    case modalTypes.SHOW_MODAL :
+    case types.SHOW_MODAL :
       return {
         ...state,
         modal: {
@@ -12,7 +11,7 @@ export default function appReducer(state = appInitialState, action) {
           containerProps: action.containerProps
         }
       };
-    case modalTypes.HIDE_MODAL :
+    case types.HIDE_MODAL :
       return {
         ...state,
         modal: {
@@ -20,7 +19,7 @@ export default function appReducer(state = appInitialState, action) {
           containerProps: {}
         }
       };
-    case postOrderTypes.SET_POST_ORDER :
+    case types.SET_POST_ORDER :
       return {
         ...state,
         postOrder: {

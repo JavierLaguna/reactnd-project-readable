@@ -1,4 +1,4 @@
-import * as types from '../../constants/app/modal'
+import * as types from './actionTypes';
 
 // ------------------------------ ACTIONS  ------------------------------
 

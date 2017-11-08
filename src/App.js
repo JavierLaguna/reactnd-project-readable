@@ -27,18 +27,4 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getAllCategories: () => dispatch(getAllCategories()),
-    getAllPosts: () => dispatch(getAllPosts())
-  }
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
-
-
-
+export default withRouter(connect(null, {getAllCategories, getAllPosts})(App))
